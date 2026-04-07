@@ -1,0 +1,2565 @@
+﻿Build1=Default,b4a.DailyNutrition
+Build2=New_1,b4a.DailyNutrition
+Build3=DailyNutrition,b4a.DailyNutrition
+File1=cremenu.bal
+File10=mng_menu.bal
+File11=mng_repast.bal
+File12=mngmaterial.bal
+File13=nutrient.bal
+File14=scollmngmaterial.bal
+File15=showname.bal
+File16=showname_new.bal
+File17=showrepast.bal
+File2=detailmenu.bal
+File3=eat.bal
+File4=eatinrepast.bal
+File5=food.db
+File6=foodtype.bal
+File7=foodtype_new.bal
+File8=home.bal
+File9=material.bal
+FileGroup1=Default Group
+FileGroup10=Default Group
+FileGroup11=Default Group
+FileGroup12=Default Group
+FileGroup13=Default Group
+FileGroup14=Default Group
+FileGroup15=Default Group
+FileGroup16=Default Group
+FileGroup17=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+FileGroup7=Default Group
+FileGroup8=Default Group
+FileGroup9=Default Group
+Group=Default Group
+Library1=core
+Library2=sql
+Library3=stringutils
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="14"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~SetApplicationAttribute(android:theme, "@android:style/Theme.Holo")~\n~'End of default text.~\n~
+Module1=Table
+NumberOfFiles=17
+NumberOfLibraries=3
+NumberOfModules=1
+Version=12.5
+@EndOfDesignText@
+	#ApplicationLabel: DailyNutrition
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True			
+#End Region
+'inculde แก้จากtrue เป็น false
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	'These variables can only be accessed from this module.
+	Dim kcal As Int
+	Dim agecal As Int
+	Dim sexcal As String
+	Dim idnutri1 As String
+	Dim idnutri As String
+	Dim caldateeat As Int		'ทำฟังชันเรียกชื่อ
+'	Dim foodinday As Object
+	Dim eatid As Object
+	Dim TotalRows As Int
+	Dim menutorepast As Int
+	Dim copyrepast As String
+	Dim reUpdate As String
+	Dim dataMode As String  'ตัวแปรเก็บค่า ต้องการ เพิ่ม หรือ แก้ไข
+	Dim Table1 As Table
+	Dim idname As Object
+	Dim idname1 As Int
+	Dim idtype As String
+	Dim idrepast As String
+	Dim idmat As Int
+'	Dim idmenu2 As Int 
+	Dim idmenu As Int 
+    Dim dbSQL As SQL
+	Private txtname As EditText
+	Private txtwhight As EditText
+	Private txtnickname As EditText
+	Private txtheight As EditText
+	Private lvname As ListView
+	Private lblhbd As Label
+	Private btnmaterialtype As Button
+	Private btndetail As Button
+	Private btnmenufood As Button
+	Private btnuser As Button
+	Private btnbh1 As Button
+	Private btnbhdtf As Button
+	Private btnbhdtmn As Button
+	Private btnbacktype As Button
+	Private txtfoodtype As EditText
+	Private btnsavetype As Button
+	Private btnshowtype As Button
+	Private btnaddfood As Button
+	Private btnmnmaterial As Button
+	Private scvmngmaterial As ScrollView
+	Private Panel1 As Panel
+	Private btnbhmate As Button
+'	Private txtsex As EditText
+	Private btnbmenun As Button
+	Private txtmate1 As EditText
+	Private txtmate2 As EditText
+	Private txtmate3 As EditText
+	Private txtmate4 As EditText
+	Private txtmate5 As EditText
+	Private txtmate6 As EditText
+	Private txtmate7 As EditText
+	Private txtmate8 As EditText
+	Private txtmate9 As EditText
+	Private txtmate10 As EditText
+	Private txtmate11 As EditText
+	Private txtmate12 As EditText
+	Private txtmate13 As EditText
+	Private txtmate14 As EditText
+	Private txtmate15 As EditText
+	Private txtmate16 As EditText
+	Private txtmate17 As EditText
+	Private txtmate18 As EditText
+	Private txtmate19 As EditText
+	Private txtmate20 As EditText
+	Private txtmate21 As EditText
+	Private txtmate22 As EditText
+	Private txtmate23 As EditText
+	Private txtmate24 As EditText
+	Private btnconmaterial As Button
+	Private btnaddmenu As Button
+	Private btndmenu As Button
+	Private btncalmenu As Button
+	Private btndiet As Button
+	Private btnsavemenu As Button
+	Private txtmenu As EditText
+'	Private txtmenu1 As EditText ปิดปุ่ม
+	Private btnmenuback As Button
+	Private txtmenup1 As EditText
+	Private txtmenup2 As EditText
+	Private txtmenup3 As EditText
+	Private btnaddmatmenu As Button
+	Private Panel2 As Panel
+	Private btnconmenu As Button
+	Private lvmatmenu As ListView
+	Private btnblackmngmenu As Button
+	Private btneatback As Button
+	Private btnnutriback As Button
+	Private RadioM As RadioButton
+	Private RadioW As RadioButton
+	Private btnsavenmenu As Button
+	Private lblmonthre As Label
+	Private btnokmre As Button
+	Private txtone As EditText
+	Private txttwo As EditText
+	Private txtthree As EditText
+	Private txtfour As EditText
+	Private txtfive As EditText
+	Private txtsix As EditText
+	Private txtseven As EditText
+	Private cbone As CheckBox
+	Private cbtwo As CheckBox
+	Private cbthree As CheckBox
+	Private cbfour As CheckBox
+	Private cbfive As CheckBox
+	Private cbsix As CheckBox
+	Private cbseven As CheckBox
+	Private test As Label
+	Private Pnre As Panel
+	Private lblrepast As Label
+	Private lblmonthreend As Label
+	Private ListView1 As ListView
+	Private btnrepastback As Button
+	Private btnmnrepast As Button
+	Private btnblackhome1 As Button
+	Private btncopyre As Button
+	Private btnviewrepast As Button
+	Private btnblackhome2 As Button
+	Private btncopyrepast As Button
+	Private Spshowdate As Spinner
+	Private lvshowre As ListView
+	Private lblidname As Label
+	Private lblnamere As Label
+	Private btnaddeat As Button
+	Private btndieteat As Button
+	Private lvfoodinday As ListView
+	Private pnshowre As Panel
+	Private pneat As Panel
+	Private btncopyselect As Button
+	Private txtmate25 As EditText
+	Private btnconeat As Button
+	Private lblrepastdiet As Label
+	Private lblselectday As Label
+	Private lblselectday1 As Label
+	Private lblnu1 As Label
+	Private lblnu2 As Label
+	Private lblnu3 As Label
+	Private btncondate As Button
+	Private Label2 As Label
+	Private btnnewname As Button
+	Private lblintro As Label
+	Private lblintro1 As Label
+	Private btnintro As Button
+	Private lblreintro As Label
+	Private btngoshowname As Button
+	Private lblmngmaterial As Label
+	Private btndelmaterial As Button
+	Private btnbackuser As Button
+	Private lblshowreintro1 As Label
+	Private lblmngmaterial1 As Label
+	Private lblmenu2 As Label
+	Private lbleatintro As Label
+	Private spselectday As Spinner
+	Private spselectday2 As Spinner
+	Private spselectday3 As Spinner
+	Private lblmidre As Label
+	Private lblmidre1 As Label
+	Private btnbhometoeatre As Button
+	Private lblDiet1 As Label
+	Private lbldietintro1 As Label
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	'Do not forget to load the layout file created with the visual designer. For example:
+	
+	If FirstTime =True Then				
+ 		If File.Exists(File.DirInternal,"food.db") = False Then
+			File.Copy(File.DirAssets,"food.db",File.DirInternal,"food.db")
+		End If
+	End If 
+		If dbSQL.IsInitialized = False Then 
+			dbSQL.Initialize(File.DirInternal, "food.db", True) 'DirInternal 'DirDefaultExternal
+		End If
+		
+	Activity.LoadLayout("showname")
+  	showname
+End Sub
+
+Sub showname
+lvname.Height=100%y-(btnnewname.height)
+lvname.Width=100%x
+
+  Dim rs As Cursor
+  Dim sql As String 
+  sql="select user_id,namesuser from recorduser"					'เรียกsqlในฟิวrec user 111
+  rs=dbSQL.ExecQuery(sql)
+	  For i = 0 To rs.RowCount -1
+	     rs.Position =i
+		 lvname.AddSingleLine2(rs.GetString("namesuser"),rs.GetString("user_id"))
+	  Next   	
+	  
+	
+End Sub 
+
+Sub lvname_ItemClick (Position As Int, Value As Object)
+		Activity.RemoveAllViews
+		idname = Value
+		idname1 = Value
+		Activity.LoadLayout("home")
+		
+'	  	agecal
+'		sexcal
+			 Dim rs As Cursor
+			 Dim sql As String 
+		  sql="select sex,birthday,user_id,namesuser,julianday('now') - julianday(birthday) as days from recorduser"					'เรียกsqlในฟิวrec user 111
+		  rs=dbSQL.ExecQuery(sql)
+		  rs.Position = 0
+		  	agecal = rs.GetString("days")/365
+			
+			If agecal <=8 Then 
+			   sexcal="ร"
+			Else
+			  If rs.GetString("sex")="ชาย" Then
+			       sexcal = "ช"
+				   Else
+				   sexcal = "ญ"
+			  End If 
+			End If	
+
+End Sub
+
+Sub btnbackuser_Click		'กลับหน้าแรก
+
+		Activity.RemoveAllViews
+		Activity.LoadLayout("showname")
+		showname
+		
+End Sub
+
+Sub lvname_ItemLongClick (Position As Int, Value As Object)
+		Try
+		Dim i As Int 
+		i = Msgbox2("กรุณาเลือก?", "แจ้งเตือน", "แก้ไข", "", "ลบ", Null)
+		
+					If i=-1 Then   'do Yes code
+						Activity.RemoveAllViews
+						Activity.LoadLayout("showname_new")
+						dataMode="edit"
+						Dim sql As String
+						Dim rs As Cursor
+						sql="select namesuser,birthday,whight,hight,usernick,sex from recorduser where user_id='"&Value&"'"
+						rs = dbSQL.ExecQuery(sql)
+						rs.Position=0
+						txtname.Text = rs.GetString("namesuser")
+						lblhbd.Text = rs.GetString("birthday")
+							Dim sp() As String
+							sp=Regex.Split("\-",lblhbd.Text)
+							lblhbd.Text = sp(2) &"/"& sp(1) &"/"& sp(0)
+									txtwhight.Text = rs.GetInt("whight")		'weight
+									txtheight.Text = rs.GetInt("hight")		'height
+									txtnickname.Text = rs.GetString("usernick")
+										If rs.GetString("sex") =("ชาย") Then
+							  				RadioM.Checked =True
+										Else If rs.GetString("sex") =("หญิง") Then
+											RadioW.Checked =True
+										End If
+					Else If i=-3 Then				  
+								Dim sql As String
+								sql="delete from recorduser where user_id='"&Value&"'"
+								dbSQL.ExecNonQuery(sql)
+								
+								lvname.Clear
+								showname
+					Else
+								Return
+					End If
+		Catch
+		Msgbox(LastException,"x") 
+   		End Try 
+End Sub
+
+Sub btnsavename_Click
+Try
+'	Msgbox("โปรดเลือก วัน/เดือน/ปี เกิด!","แจ้งเตือน")
+    If txtname.text="" Then										'}
+	   Msgbox("โปรดใส่ชื่อผู้ใช้","แจ้งเตือน")
+	   txtname.RequestFocus
+	   Return
+	else if  lblhbd.Text = "เลือกวันที่" Then
+		Msgbox("โปรดเลือก วัน/เดือน/ปี เกิด!","แจ้งเตือน")
+		lblhbd.RequestFocus
+		Return
+	else if txtwhight.text="" Then
+		Msgbox("โปรดใส่ น้ำหนัก","แจ้งเตือน")
+		txtwhight.RequestFocus
+		Return
+	else if txtheight.text="" Then
+		Msgbox("โปรดใส่ ส่วนสูง","แจ้งเตือน")
+		txtheight.RequestFocus
+		Return
+	else if txtnickname.text="" Then
+		Msgbox("โปรดใส่ชื่อย่อ","แจ้งเตือน")
+		txtnickname.RequestFocus
+		Return
+	Else
+	End If 
+																'} แจ้งเตือนข้อผิดพลาด
+
+			Dim strSex As String 
+			If RadioM.Checked =True Then
+			   strSex="ชาย"
+			Else
+			   strSex="หญิง"
+			End If 
+'					If dataMode="new" Then
+'					   	  Dim rs As Cursor		'ค้นหา ชื่อซ้ำ ว่ามีหรือไม่ในฐานข้อมูล
+'						  Dim sql As String 
+'						  sql="select namesuser from recorduser where namesuser='" & txtname.text & "'"
+'						  rs=dbSQL.ExecQuery(sql)
+'						  	If rs.RowCount>0 Then
+'								Msgbox("มีรายชื่อนี้แล้วในระบบ","แจ้งเตือน")
+'								Return
+'							End If
+'					Else If dataMode="Edit" Then
+'							ddd
+'					End If	
+				idname = txtname.text	
+				  Dim rs As Cursor		'ค้นหา ชื่อซ้ำ ว่ามีหรือไม่ในฐานข้อมูล
+				  Dim sql As String 
+				  sql="select usernick from recorduser where namesuser='" & txtnickname.text & "'"
+				  rs=dbSQL.ExecQuery(sql)
+				  	If rs.RowCount>0 Then
+						Msgbox("มีชื่อย่อ"+ txtnickname.text +"นี้แล้วในระบบ","แจ้งเตือน")
+						Return
+					End If		
+			
+					Dim sqlfood As String										'}
+						If dataMode="new" Then
+							Dim rs As Cursor		'ค้นหา ชื่อซ้ำ ว่ามีหรือไม่ในฐานข้อมูล
+						  	Dim sql As String 
+						 	 sql="select namesuser from recorduser where namesuser='" & txtname.text & "'"
+						 	 rs=dbSQL.ExecQuery(sql)
+						 	 	If rs.RowCount>0 Then
+									Msgbox("มีรายชื่อ" + txtname.text +"แล้วในระบบ","แจ้งเตือน")
+									Return
+								End If
+								 
+									sqlfood="insert into recorduser("	 			
+									sqlfood=sqlfood & " namesuser,"   '1
+									sqlfood=sqlfood & " birthday," '2
+									sqlfood=sqlfood & " whight," '3
+									sqlfood=sqlfood & " hight," '4
+									sqlfood=sqlfood & " usernick," '5
+									sqlfood=sqlfood & " sex" '6
+									sqlfood=sqlfood & " )values("
+									sqlfood=sqlfood & " '"&txtname.text&"'," '1
+									sqlfood=sqlfood & " '"& lblhbd.tag &"'" '2
+									sqlfood=sqlfood & " "&txtwhight.text&"," '3
+									sqlfood=sqlfood & " "&txtheight.text&"," '4
+									sqlfood=sqlfood & " '"&txtnickname.text&"'," '5
+								'	sqlfood=sqlfood & " '"&txtsex.text&"'" '6
+								     sqlfood=sqlfood & " '"& strSex &"'" '6
+									sqlfood=sqlfood & " )"		
+'											txtname.text
+												Dim rs As Cursor		'ค้นหา ชื่อซ้ำ ว่ามีหรือไม่ในฐานข้อมูล
+											  	Dim sql As String 
+											 	 sql="select namesuser,user_id from recorduser where namesuser='" & txtname.text & "'"
+											 	 rs=dbSQL.ExecQuery(sql)
+												 rs.Position=0
+											 	 	idname = rs.GetString("user_id")
+													
+																			
+						Else If dataMode="Edit" Then
+							
+							sqlfood="update recorduser set "
+							sqlfood=sqlfood & " namesuser= '"&txtname.text&"'," '1
+							sqlfood=sqlfood & " birthday= '"& lblhbd.tag &"',"		
+							
+							sqlfood=sqlfood & " whight='" &txtwhight.text& "',"
+							sqlfood=sqlfood & " hight='" &txtheight.text& "',"
+							sqlfood=sqlfood & " usernick='" &txtnickname.text& "'"
+							sqlfood=sqlfood & "where user_id='" &idname& "'"
+						End If
+							dbSQL.ExecNonQuery(sqlfood) 								'} อินพุทข้อมูลลงดาต้า
+							Msgbox("บันทึกรายชื่อสำเร็จ","แจ้งเตือน")
+							Activity.RemoveAllViews
+							Activity.LoadLayout("home")
+				
+				    Catch					    'try
+			        Msgbox(LastException,"x") 
+				    End Try 					
+End Sub
+
+Sub btngoshowname_Click
+	If dataMode="new" Then
+			Activity.RemoveAllViews
+			Activity.LoadLayout("showname")
+			showname
+	Else if dataMode="Edit" Then
+			Activity.RemoveAllViews
+			Activity.LoadLayout("home")
+	Else
+			Activity.RemoveAllViews
+			Activity.LoadLayout("showname")
+			showname
+	End If
+	
+End Sub
+
+
+
+Sub btnmnmaterial_Click			'โชว์วัตถุดิบทั้งหมด
+	Activity.RemoveAllViews
+	Activity.LoadLayout("material")									 
+		          Table1.Initialize(Me, "Table_material", 6)  	
+				  Table1.AddToActivity(Activity, 0,btnaddfood.Top + btnaddfood.Height ,100%x,100%y - btnaddfood.Height)
+				  Table1.SetHeader(Array As String("id","ชื่อวัตถุดิบ","โปรตีน","คาร์โบไฮเดรต","ไขมัน","..."))		
+				  Table1.SetColumnsWidths(Array As Int(0%x,45%x,15%x,15%x,15%x,10%x)) 								
+  Dim rs As Cursor
+  Dim sql As String 
+  sql="select crab,fat,prot,material_name,material_id from material"
+  rs=dbSQL.ExecQuery(sql)
+  Table1.ClearAll
+  		For i = 0 To rs.RowCount -1
+   	    rs.Position =i
+	    Table1.AddRow(Array As String(rs.GetString("material_id") , rs.GetString("material_name") , rs.GetString("prot") ,rs.GetString("crab"),rs.GetString("fat"), "..." ))
+	Next 		
+'type_id,material_name,number,h2o,kcal,prot,crab,fiber,fat,chol,calc,iron,magn,pota,sodi,zinc,vitA,vitB1,vitE,vitB2,vitB3,vitB6,vitB9,vitC,vitB12,sele
+		
+End Sub
+
+Sub btnnewname_Click
+    Activity.RemoveAllViews
+	Activity.LoadLayout("showname_new")
+	dataMode="new"
+End Sub
+
+Sub lblhbd_Click 
+    Dim ret As Int 
+	Dim Dd As DateDialog													'เลือกวันเกิด
+	Dd.Year = DateTime.GetYear(DateTime.Now)
+	Dd.Month = DateTime.GetMonth(DateTime.Now)	
+	Dd.DayOfMonth = DateTime.GetDayOfMonth(DateTime.Now)
+	ret = Dd.Show("Set the required date", "B4A Date Dialog", "No", "Yes", "", Null)
+	If ret=-1 Then
+			lblhbd.text = Dd.DayOfMonth & "/" & Dd.Month & "/" & Dd.Year 
+			lblhbd.tag =  Dd.Year & "-" & Dd.Month & "-" & Dd.DayOfMonth			'2020-03-31
+	Else If ret=-3 Then
+		Return
+	End If
+End Sub
+
+Sub btnmaterialtype_Click
+		showfoodtype 'มาจากSub showfoodtype
+End Sub
+
+Sub btnmenufood_Click
+		Activity.RemoveAllViews
+		Activity.LoadLayout("detailmenu")
+			  showmenu
+End Sub
+'matmenu
+' Dim rs As Cursor
+'  Dim sql As String 
+'		  sql="select detailmenu.material_amount,"
+'		  sql=sql & "  detailmenu.material_id,"
+'		  sql=sql & "  material.material_name, "
+'		  sql=sql & "  detailmenu.menufood_id from detailmenu "
+'		  sql=sql & "  inner join material on material.material_id=detailmenu.material_id "
+'		  sql=sql & " where menufood_id='"& idmenu & "'"
+
+Sub showmenu
+			  Table1.Initialize(Me, "Table_menu",6)  		'7		    
+			  Table1.AddToActivity(Activity, 0,btnaddmenu.Top + btnaddmenu.Height ,100%x,100%y - btnaddmenu.Height)	
+			  Table1.SetHeader(Array As String("id","ชื่อเมนู","Prot","crab","fat","แก้ไข"))		 ',"เลือกแล้ว"
+			  Table1.SetColumnsWidths(Array As Int(0,50%x,12.5%x,12.5%x,12.5%x,12.5%x)) 			',15%x					
+				  Dim rs As Cursor
+				  Dim sql As String 
+				  sql="select menufood_id,menufood_name from menufood"
+'				  sql="select foodtype.type_name,foodtype.type_id,count(material.type_id) as total from foodtype left join material on foodtype.type_id=material.type_id group by foodtype.type_name,foodtype.type_id "
+'				  sql="select prot,crab,fat from material inner join detailmenu on detailmenu.material_id=material.material_id "
+				  rs=dbSQL.ExecQuery(sql)						'เรียกข้อมูลในฐาน
+
+				  For i = 0 To rs.RowCount -1
+				     rs.Position =i
+					   Table1.AddRow(Array As String(rs.GetString("menufood_id") , rs.GetString("menufood_name") ,getProt(rs.GetString("menufood_id")),getCrab(rs.GetString("menufood_id")),getFat(rs.GetString("menufood_id")),"..." )) 'เรียกฐานข้อมูลมาแสดงในตาราง   			rs.GetString("prot"),rs.GetString("crab"),rs.GetString("fat")
+				  Next 
+				  
+End Sub
+
+Sub getProt(idFood As Double)					'โปรตีน
+    Dim ss As String 
+	Dim rs As Cursor
+	ss="select sum(material.prot * material_amount) as totalG from material inner join detailmenu on material.material_id = detailmenu.material_id "
+	ss=ss & " where detailmenu.menufood_id = '" & idFood & "' "
+	rs=dbSQL.ExecQuery(ss)
+		If rs.RowCount >0 Then 
+			rs.Position=0
+			   If rs.GetString("totalG") =Null Then
+			     Return "" 									
+			   Else 
+			     Return rs.GetString("totalG") 
+			   End If 
+		Else
+			Return ""
+		End If 
+End Sub 
+
+Sub getCrab(idFood As Double)					'คาร์โบในเมน
+   Dim ss As String 
+	Dim rs As Cursor
+	ss="select sum(material.crab * material_amount) as totalG from material inner join detailmenu on material.material_id = detailmenu.material_id "
+	ss=ss & " where detailmenu.menufood_id = '" & idFood & "' "
+	rs=dbSQL.ExecQuery(ss)
+	
+	If rs.RowCount >0 Then 
+	rs.Position=0
+	   If rs.GetString("totalG") =Null Then
+	     Return "" 				
+	   Else 
+	     Return rs.GetString("totalG") 
+	   End If 
+	Else
+	   Return ""
+	End If 
+End Sub 
+
+Sub getFat(idFood As Double)					'ไว้ทำเพิ่ม ไขมัน-*-*-*-*-	'fatในเมนู
+    Dim ss As String 
+	Dim rs As Cursor
+	ss="select sum(material.fat * material_amount) as totalG from material inner join detailmenu on material.material_id = detailmenu.material_id "
+	ss=ss & " where detailmenu.menufood_id = '" & idFood & "' "
+	rs=dbSQL.ExecQuery(ss)
+	
+	If rs.RowCount >0 Then 
+	rs.Position=0
+	   If rs.GetString("totalG") =Null Then
+	     Return "" 									
+	   Else 
+	     Return rs.GetString("totalG") 
+	   End If 
+	Else
+	   Return ""
+	End If 
+End Sub 
+
+Sub Table_menu_CellClick (Col As Int, Row As Int) 									
+
+
+		If Col=1 Then
+			Dim i As Int
+			i = Msgbox2("ยืนยันการแก้ไขข้อมูล", "แจ้งเตือน", "แก้ไข", "", "ยกเลิก", Null)
+				If i =-1 Then 'แก้ไข
+					
+				Else If i= -2  Then 'ยกเลิก
+					Return
+				Else
+						Return
+				End If
+		Else If Col=5 Then
+			idmenu= Table1.GetValue(0,Row)
+
+			Activity.RemoveAllViews
+			Activity.LoadLayout("mng_menu")	
+			showmatmenu
+			
+			Dim rs As Cursor
+			Dim sql As String 
+				sql="select menufood_id, menufood_name from menufood where menufood_id='" & idmenu & "' "			'เรียกเมนูจากฐานข้อมูลมาแสดง
+				rs=dbSQL.ExecQuery(sql)
+				rs.Position =0
+			    lblmenu2.Text = rs.GetString("menufood_name")
+		End If
+		
+End Sub 
+
+Sub btnuser_Click											'dddddddddddddddddddddddddddddddddddddddดู
+
+	Dim i As Int
+	i = Msgbox2("ยืนยันการแก้ไขข้อมูล", "แจ้งเตือน", "แก้ไข", "", "ยกเลิก", Null)
+		If i =-1 Then 'แก้ไข
+			
+		Else If i= -2  Then 'ยกเลิก
+			Return
+		Else
+			Return
+		End If
+	Activity.RemoveAllViews
+	Activity.LoadLayout("showname_new")
+		dataMode="Edit"	
+			Dim rs As Cursor
+			Dim sql As String 
+				sql="SELECT user_id,usernick,birthday,sex,namesuser,whight,hight FROM recorduser where user_id='" & idname & "'"			'เรียกเมนูจากฐานข้อมูลมาแสดง
+				rs=dbSQL.ExecQuery(sql)
+				rs.Position = 0
+			    txtname.text = rs.GetString("namesuser")
+				lblhbd.text = rs.GetString("birthday")
+'		Msgbox(lblhbd.Text,"xx") 'เช็ควันที่
+					Dim sp() As String
+					sp=Regex.Split("\-",lblhbd.Text)
+					lblhbd.Text = sp(2) &"/"& sp(1) &"/" & sp(0)
+				txtwhight.text = rs.GetString("whight")
+				txtheight.text = rs.GetString("hight")
+				txtnickname.text = rs.GetString("usernick")
+					If rs.GetString("sex") =("ชาย") Then
+						RadioM.Checked =True
+					Else If rs.GetString("sex") =("หญิง") Then
+						RadioW.Checked =True
+					End If
+								
+			
+	
+End Sub
+
+Sub btnbh1_Click
+		Activity.RemoveAllViews
+		Activity.LoadLayout("home")
+End Sub
+
+Sub btnbhdtf_Click
+		Activity.RemoveAllViews
+		Activity.LoadLayout("home")
+End Sub
+
+Sub btnbhdtmn_Click
+		Activity.RemoveAllViews
+		Activity.LoadLayout("home")
+End Sub
+
+Sub btnbacktype_Click
+		Activity.RemoveAllViews
+		Activity.LoadLayout("foodtype")
+		showfoodtype
+End Sub
+Sub btndmenu_Click
+		Activity.RemoveAllViews
+		Activity.LoadLayout("detailmenu")
+		btnmenufood_Click
+		
+End Sub
+
+Sub btnshowtype_Click
+       dataMode="new" 'เก็บค่า new เพื่อนให้รู้ว่านี่คือการกดปุ่มเพิ่ม
+		Activity.RemoveAllViews
+		Activity.LoadLayout("foodtype_new")
+End Sub
+
+Sub btnsavetype_Click
+	Try
+	
+			If txtfoodtype.text="" Then
+			Msgbox("โปรดใส่ชื่อประเภทอาหาร","แจ้งเตือน")
+			txtfoodtype.RequestFocus
+			Return
+			End If
+				Dim rs As Cursor		'ค้นหา ชื่อซ้ำ ว่ามีหรือไม่ในฐานข้อมูล
+				Dim sql As String 
+				sql="select type_name from foodtype where type_name='" & txtfoodtype.text & "'"
+				rs=dbSQL.ExecQuery(sql)
+				  	If rs.RowCount>0 Then
+						Msgbox("มีรายชื่อนี้แล้วในระบบ","แจ้งเตือน")
+						Return
+					End If
+						Dim sqlfood As String
+							If dataMode="new"  Then 'ถ้าตัวแปรเป็น new หมายถึงกดปุ่มเพิ่มมา ให้ insert 
+									sqlfood="insert into foodtype("
+									sqlfood=sqlfood & " type_name" '1
+									sqlfood=sqlfood & " )values("
+									sqlfood=sqlfood & " '"&txtfoodtype.text&"'" '1
+									sqlfood=sqlfood & " )"
+							Else 'ถ้า datamode ไม่ใช่ new หมายถึงมาจากากรแก้ไข
+							        sqlfood="update   foodtype set "
+									sqlfood=sqlfood & " type_name= '"&txtfoodtype.text&"' " '1
+									sqlfood=sqlfood & " where type_id='" & idtype & "' "
+							End If 
+					        	dbSQL.ExecNonQuery(sqlfood) 
+								Msgbox("บันทึกชื่อประเภทสำเร็จ","แจ้งเตือน")
+				 				showfoodtype
+
+					
+	Catch
+	Msgbox(LastException,"x")
+	End Try
+End Sub
+
+'pneat.Visible=True
+'			pneat.Top=btneatback.Height
+'			pneat.Width=100%x
+'			pneat.Height=100%y-btneatback.Top
+'			  showmenuselect
+'			  btnconeat.Visible=True
+'			  btnconeat.BringToFront
+Sub btnaddfood_Click 'เพิ่มวัตถุดิบในประเภทที่เลือก
+		Activity.RemoveAllViews
+		Table1.ClearAll
+		dataMode="new"
+		Activity.LoadLayout("mngmaterial")
+		scvmngmaterial.Panel.LoadLayout("scollmngmaterial")
+		scvmngmaterial.Panel.Height = 1100dip
+		scvmngmaterial.Height = 80%y
+		scvmngmaterial.Width = 100%x 
+		
+		
+End Sub
+
+Sub showfoodtype
+        Activity.RemoveAllViews
+		Activity.LoadLayout("foodtype")
+																	  	    '{สร้างตาราง
+		          Table1.Initialize(Me, "Table_type", 4)  				    'เรียกตารางจากไลเบอรี่ สร้าง4คอลลัม 	table_type ตั้งชื่อเหตุการณ์
+				  Table1.AddToActivity(Activity, 0,btnshowtype.Top + btnshowtype.Height ,100%x,100%y - btnshowtype.Height)	'กำหนดตำแหน่งของตาราง ,ชิดซ้าย,ตำแหน่งบน,ความกว้าง,ความสูงลบปุ่ม
+				  Table1.SetHeader(Array As String("id","ชื่อประเภท","รายการ","แก้ไข"))		 'เพิ่มคำในหัวตารางตามคอมม่า
+				  Table1.SetColumnsWidths(Array As Int(0%x,65%x, 20%x,15%x)) 					 'กำหนดความกว้างของแต่ละช่อง							}สร้างตาราง มีต่อ				
+  Dim rs As Cursor
+  Dim sql As String 
+'  select foodtype.type_name,foodtype.type_id,count(material.type_id) as total from foodtype inner join material on foodtype.type_id=material.type_id group by foodtype.type_name,foodtype.type_id
+  sql="select foodtype.type_name,foodtype.type_id,count(material.type_id) as total from foodtype left join material on foodtype.type_id=material.type_id group by foodtype.type_name,foodtype.type_id "
+  rs=dbSQL.ExecQuery(sql)						'เรียกข้อมูลในฐานมาโชว์
+  Table1.ClearAll
+  For i = 0 To rs.RowCount -1
+     rs.Position =i
+	   Table1.AddRow(Array As String(rs.GetString("type_id") , rs.GetString("type_name") , rs.GetString("total") , "..." )) 'เรียกฐานข้อมูลมาแสดงในตาราง   				}สร้างตาราง ต่อ
+  Next 
+End Sub 
+
+Sub Table_type_CellClick (Col As Int, Row As Int) 									'เหตุการณ์แตะในตาราง												}สร้างตาราง ต่อ
+	If Col=1 Then
+		idtype= Table1.GetValue(0,Row)
+		showMaterial
+	else  If Col=3 Then
+				idtype= Table1.GetValue(0,Row)
+		        Dim i As Int
+				i = Msgbox2("กรุณาเลือก?", "แจ้งเตือน", "แก้ไข", "", "ลบ", Null)
+					If i=-1 Then
+					    dataMode="edit" 'เก็บค่า edit 
+						Activity.RemoveAllViews
+						Activity.LoadLayout("foodtype_new")
+							Dim rs As Cursor
+							Dim sql As String 
+								sql="select type_name from foodtype  where type_id='" & idtype & "'"			'เรียกเมนูจากฐานข้อมูลมาแสดง
+								rs=dbSQL.ExecQuery(sql)
+								rs.Position =0
+							    txtfoodtype.Text = rs.GetString("type_name")
+	               Else If i=-2 Then
+					   Dim sql As String 																			'จัดการฐานข้อมูล
+					    sql="delete from foodtype where type_id='" &  idtype  & "'"      'คำสั่งลบข้อมูล ใน-ชื่อตาราง-ฟิว  
+				     	dbSQL.ExecNonQuery(sql)			'ลบฐานข้อมูล,อัพเดท,เพิ่มเข้า
+					   Activity.RemoveAllViews
+			           Activity.LoadLayout("foodtype")
+					   showfoodtype
+					Else
+					 	Return
+			        End If 
+	    
+	End If
+End Sub 
+
+Sub lsfoodtype_ItemClick (Position As Int, Value As Object)
+	Activity.RemoveAllViews
+	Activity.LoadLayout("typetomate")
+	Msgbox(Value,"test")
+End Sub
+
+
+
+Sub btnconmaterial_Click
+	If txtmate1.Text ="" Then
+	    Msgbox("กรุณาใส่ชื่อ","แจ้งเตือน")
+		txtmate1.RequestFocus
+		Return
+	else If txtmate2.Text > 1 And txtmate2.Text < 1  Then
+	    Msgbox("กรุณาใส่ปริมาณ 1 (กรัม)","แจ้งเตือน")
+		txtmate2.RequestFocus
+		Return
+	else If txtmate3.Text ="" Then '---
+	    Msgbox("กรุณาใส่พลังงาน(cal)","แจ้งเตือน")
+		txtmate3.RequestFocus
+		Return
+	else If txtmate4.Text ="" Then
+	    Msgbox("กรุณาใส่โปรตีน","แจ้งเตือน")
+		txtmate4.RequestFocus
+		Return
+	else If txtmate5.Text ="" Then
+	    Msgbox("กรุณาใส่วิตามินA","แจ้งเตือน")
+		txtmate5.RequestFocus
+		Return
+	else If txtmate6.Text ="" Then
+	    Msgbox("กรุณาใส่วิตามินC","แจ้งเตือน")
+		txtmate6.RequestFocus
+		Return
+	else If txtmate7.Text ="" Then
+	    Msgbox("กรุณาใส่วิตามินE","แจ้งเตือน")
+		txtmate7.RequestFocus
+		Return
+	else If txtmate8.Text ="" Then
+	    Msgbox("กรุณาใส่วิตามินB1","แจ้งเตือน")
+		txtmate8.RequestFocus
+		Return
+	else If txtmate9.Text ="" Then
+	    Msgbox("กรุณาใส่วิตามินB2","แจ้งเตือน")
+		txtmate9.RequestFocus
+		Return
+	else If txtmate10.Text ="" Then
+	    Msgbox("กรุณาใส่วิตามินB3","แจ้งเตือน")
+		txtmate10.RequestFocus
+		Return
+	else If txtmate11.Text ="" Then
+	    Msgbox("กรุณาใส่วิตามินB6","แจ้งเตือน")
+		txtmate11.RequestFocus
+		Return
+	else If txtmate12.Text ="" Then
+	    Msgbox("กรุณาใส่วิตามินB12","แจ้งเตือน")
+		txtmate12.RequestFocus
+		Return
+	else If txtmate13.Text ="" Then
+	    Msgbox("กรุณาใส่โคลีน","แจ้งเตือน")
+		txtmate13.RequestFocus
+		Return
+	else If txtmate14.Text ="" Then
+	    Msgbox("กรุณาใส่โซเดียม","แจ้งเตือน")
+		txtmate14.RequestFocus
+		Return
+	else If txtmate15.Text ="" Then
+	    Msgbox("กรุณาใส่โปแตสเซียม","แจ้งเตือน")
+		txtmate15.RequestFocus
+		Return
+	else If txtmate16.Text ="" Then
+	    Msgbox("กรุณาใส่แคลเซียม","แจ้งเตือน")
+		txtmate16.RequestFocus
+		Return
+	else If txtmate17.Text ="" Then
+	    Msgbox("กรุณาใส่แมงกานีส","แจ้งเตือน")
+		txtmate17.RequestFocus
+		Return
+	else If txtmate18.Text ="" Then
+	    Msgbox("กรุณาใส่เหล็ก","แจ้งเตือน")
+		txtmate18.RequestFocus
+		Return
+	else If txtmate19.Text ="" Then
+	    Msgbox("กรุณาใส่สังกะสี","แจ้งเตือน")
+		txtmate19.RequestFocus
+		Return
+	else If txtmate20.Text ="" Then
+	    Msgbox("กรุณาใสซีลีเนียม่","แจ้งเตือน")
+		txtmate20.RequestFocus
+		Return
+	else If txtmate21.Text ="" Then
+	    Msgbox("กรุณาใสคาร์โบไฮเดรต","แจ้งเตือน")
+		txtmate21.RequestFocus
+		Return
+	else If txtmate22.Text ="" Then
+	    Msgbox("กรุณาใสไขมัน่","แจ้งเตือน")
+		txtmate22.RequestFocus
+		Return
+	else If txtmate23.Text ="" Then
+	    Msgbox("กรุณาใส่น้ำ","แจ้งเตือน")
+		txtmate23.RequestFocus
+		Return
+	else If txtmate24.Text ="" Then
+	    Msgbox("กรุณาใส่่ใยอาหาร","แจ้งเตือน")
+		txtmate24.RequestFocus
+		Return
+    End If 
+			
+				  
+		
+Try
+'''---------material_id
+	Dim sqlfood As String
+		If dataMode="new" Then
+			Dim rs As Cursor		'ค้นหา ชื่อซ้ำ ว่ามีหรือไม่ในฐานข้อมูล
+				  Dim sql As String 
+				  sql="select material_name from material where material_name='" & txtmate1.text & "'"
+				  rs=dbSQL.ExecQuery(sql)
+				  	If rs.RowCount>0 Then
+						Msgbox("มีชื่อย่อนี้แล้วในระบบ","แจ้งเตือน")
+						Return
+					End If
+							sqlfood="insert into material("
+							sqlfood=sqlfood & " type_id," 
+							sqlfood=sqlfood & " material_name,"   
+							sqlfood=sqlfood & " number,"
+							sqlfood=sqlfood & " kcal," 
+							sqlfood=sqlfood & " prot," 
+							sqlfood=sqlfood & " vitA," 
+							sqlfood=sqlfood & " vitC,"
+							sqlfood=sqlfood & " vitE,"
+							sqlfood=sqlfood & " vitB1,"
+							sqlfood=sqlfood & " vitB2,"
+							sqlfood=sqlfood & " vitB3,"
+							sqlfood=sqlfood & " vitB6,"
+							sqlfood=sqlfood & " vitB9,"
+							sqlfood=sqlfood & " vitB12,"
+							sqlfood=sqlfood & " chol,"
+							sqlfood=sqlfood & " sodi,"
+							sqlfood=sqlfood & " pota,"
+							sqlfood=sqlfood & " calc,"
+							sqlfood=sqlfood & " magn,"
+							sqlfood=sqlfood & " iron,"
+							sqlfood=sqlfood & " zinc,"
+							sqlfood=sqlfood & " sele,"
+							sqlfood=sqlfood & " crab,"
+							sqlfood=sqlfood & " fat,"
+							sqlfood=sqlfood & " h2o,"
+							sqlfood=sqlfood & " fiber"
+							sqlfood=sqlfood & " )values("
+							sqlfood=sqlfood & " '"& idtype &"'," 
+							sqlfood=sqlfood & " '"&txtmate1.text&"'," 
+							sqlfood=sqlfood & " '"&txtmate2.text&"'," 
+							sqlfood=sqlfood & " '"&txtmate3.text&"'," 
+							sqlfood=sqlfood & " '"&txtmate4.text&"'," 
+							sqlfood=sqlfood & " '"&txtmate5.text&"'," 
+							sqlfood=sqlfood & " '"&txtmate6.text&"'," 
+							sqlfood=sqlfood & " '"&txtmate7.text&"'," 
+							sqlfood=sqlfood & " '"&txtmate8.text&"'," 
+							sqlfood=sqlfood & " '"&txtmate9.text&"'," 
+							sqlfood=sqlfood & " '"&txtmate10.text&"'," 
+							sqlfood=sqlfood & " '"&txtmate11.text&"'," 
+							sqlfood=sqlfood & " '"&txtmate12.text&"'," 
+							sqlfood=sqlfood & " '"&txtmate13.text&"'," 
+							sqlfood=sqlfood & " '"&txtmate14.text&"'," 
+							sqlfood=sqlfood & " '"&txtmate15.text&"'," 
+							sqlfood=sqlfood & " '"&txtmate16.text&"'," 
+							sqlfood=sqlfood & " '"&txtmate17.text&"',"
+							sqlfood=sqlfood & " '"&txtmate18.text&"'," 
+							sqlfood=sqlfood & " '"&txtmate19.text&"',"
+							sqlfood=sqlfood & " '"&txtmate20.text&"',"
+							sqlfood=sqlfood & " '"&txtmate21.text&"',"
+							sqlfood=sqlfood & " '"&txtmate22.text&"',"
+							sqlfood=sqlfood & " '"&txtmate23.text&"',"
+							sqlfood=sqlfood & " '"&txtmate24.text&"',"
+							sqlfood=sqlfood & " '"&txtmate25.text&"'"
+							sqlfood=sqlfood & " )"
+						Else
+							        sqlfood="update material set "
+									sqlfood=sqlfood & " material_name='" &txtmate1.text& "'"
+									sqlfood=sqlfood & " where material_id= '"& idmat & "'"
+						End If
+					        dbSQL.ExecNonQuery(sqlfood)
+							Msgbox("บันทึกวัตถุดิบสำเร็จ","แจ้งเตือน")
+							showMaterial
+		 Catch
+		Msgbox(LastException,"x")
+		End Try
+End Sub
+
+Sub btnbhmate_Click
+	Activity.RemoveAllViews
+	Activity.LoadLayout("home")
+End Sub
+
+Sub showMaterial 												'{เพิ่มนี้2
+        Activity.RemoveAllViews
+		Activity.LoadLayout("material")										 
+		          Table1.Initialize(Me, "Table_material2", 6)  	
+				  Table1.AddToActivity(Activity, 0,btnaddfood.Top + btnaddfood.Height ,100%x,100%y)
+				  Table1.SetHeader(Array As String("id","ชื่อวัตถุดิบ","ปริมาณโปรตีน","ปริมาณคาร์โบไฺฮเดรต","ปริมาณไขมัน","แก้ไข"))		
+				  Table1.SetColumnsWidths(Array As Int(0,50%x,12.5%x,12.5%x,12.5%x,12.5%x)) 								
+  Dim rs As Cursor
+  Dim sql As String 
+  sql="select crab,fat,prot,material_name,material_id from material where type_id='" & idtype & "' "
+  rs=dbSQL.ExecQuery(sql)
+  Table1.ClearAll
+  		For i = 0 To rs.RowCount -1
+   	    rs.Position =i
+	    Table1.AddRow(Array As String(rs.GetString("material_id") , rs.GetString("material_name") , rs.GetString("prot") ,rs.GetString("crab"),rs.GetString("fat"), "..." ))
+	Next 
+End Sub															'}เพิ่ม2
+
+Sub Table_material2_CellClick (Col As Int, Row As Int) 'จัดการตารางวัตถุดิบ
+		If  Col=5 Then
+		idmat = Table1.GetValue(0,Row)
+			Dim i As Int
+			i = Msgbox2("กรุณาเลือก?", "แจ้งเตือน", "แก้ไข", "", "ลบ", Null)
+				If i=-1 Then
+					dataMode="edit" 
+					Activity.RemoveAllViews
+					Activity.LoadLayout("mngmaterial")
+					scvmngmaterial.Panel.LoadLayout("scollmngmaterial")
+					scvmngmaterial.Panel.Height = 1100dip
+					scvmngmaterial.Height = 80%y
+					scvmngmaterial.Width = 100%x 
+							Dim rs As Cursor
+							Dim sql As String 
+								sql="select material_name,kcal,prot,vitA,vitC,vitE,vitB1,vitB2,vitB3,vitB6,vitB12,chol,sodi,pota,calc,magn,iron,zinc,sele,crab,fat,h2o,fiber,vitB9 from material where material_id='" & idmat & "' "			'เรียกเมนูจากฐานข้อมูลมาแสดง
+								rs=dbSQL.ExecQuery(sql)
+								rs.Position =0
+							    txtmate1.text = rs.GetString("material_name")
+'	เพิ่มสารอาหาร							
+'								txtmate2.Text = rs.GetString("") 'ต้องต่อ1กรัมเท่านั้น
+								txtmate3.Text = rs.GetString("kcal")
+								txtmate4.Text = rs.GetString("prot")
+								txtmate5.Text = rs.GetString("vitA")
+								txtmate6.Text = rs.GetString("vitC")
+								txtmate7.Text = rs.GetString("vitE")
+								txtmate8.Text = rs.GetString("vitB1")
+								txtmate9.Text = rs.GetString("vitB2")
+								txtmate10.Text = rs.GetString("vitB3")
+								txtmate11.Text = rs.GetString("vitB6")
+								txtmate12.Text = rs.GetString("vitB12")
+								txtmate13.Text = rs.GetString("chol")
+								txtmate14.Text = rs.GetString("sodi")
+								txtmate15.Text = rs.GetString("pota")
+								txtmate16.Text = rs.GetString("calc")
+								txtmate17.Text = rs.GetString("magn")
+								txtmate18.Text = rs.GetString("iron")
+								txtmate19.Text = rs.GetString("zinc")
+								txtmate20.Text = rs.GetString("sele")
+								txtmate21.Text = rs.GetString("crab")
+								txtmate22.Text = rs.GetString("fat")
+								txtmate23.Text = rs.GetString("h2o")
+								txtmate24.Text = rs.GetString("fiber")
+								txtmate25.Text = rs.GetString("vitB9")
+							
+                Else If i=-2 Then
+						  Dim sql As String 																			'จัดการฐานข้อมูล
+						  sql="delete from material where material_id='" &  idmat  & "'"    'ลบข้อมูล ใน-ชื่อตาราง-ฟิว  
+						  dbSQL.ExecNonQuery(sql)			'เรียกฐานข้อมูล
+						  Msgbox("ลบวัตถุดิบสำเร็จ","แจ้งเตือน")
+						  showMaterial
+				Else
+						Return
+ 		        End If 
+		End If
+End Sub
+
+Sub btnbmenun_Click  'หน้าชื่อกลับหน้าหลัก *ชั่วคราว
+	Activity.RemoveAllViews
+	Activity.LoadLayout("home")
+End Sub
+
+Sub btnmnrepast_Click 		'จัดการมื้ออาหาร
+	Activity.RemoveAllViews
+	Activity.LoadLayout("mng_repast")
+			Dim rs As Cursor
+			Dim sql As String 
+				sql="select namesuser,user_id from recorduser where user_id='" & idname1 & "' "			'เรียกเมนูจากฐานข้อมูลมาแสดง
+				rs=dbSQL.ExecQuery(sql)
+				rs.Position =0
+'  			    lblidname.Text = rs.GetInt("user_id")
+				lblnamere.Text = rs.GetString("namesuser")
+End Sub
+
+Sub btnaddmenu_Click
+	Activity.RemoveAllViews
+	Activity.LoadLayout("cremenu")
+	dataMode="new"
+End Sub
+
+Sub btnsavemenu_Click
+'		dataMode="edit"			ปุ่มเก่า
+'			Dim i As Int
+'			i = Msgbox2("ยืนยันการแก้ไขชื่อเมนูหรือไม่","แจ้งเตือน","ใช่","","ยกเลิก",Null)
+'				If i = -1 Then
+'					Dim sqlfood As String
+'				        sqlfood="update   menufood set "
+'						sqlfood=sqlfood & " menufood_name= '"&txtmenu1.text&"' " 
+'						sqlfood=sqlfood & " where menufood_id='" & idmenu & "' "
+'						dbSQL.ExecNonQuery(sqlfood) 
+'						Log("success")
+'				Else 
+'					Return
+'				End If
+		Try
+			If txtmenu.text="" Then
+			Msgbox("โปรดใส่ชื่อเมนูอาหาร","แจ้งเตือน")
+			txtmenu.RequestFocus
+			Return
+			End If
+					If	dataMode="new" Then
+								Dim rs As Cursor		'ค้นหา ชื่อซ้ำ ว่ามีหรือไม่ในฐานข้อมูล
+							    Dim sql As String 
+							    sql="select menufood_name from menufood where menufood_name='" & txtmenu.text & "'"
+							    rs=dbSQL.ExecQuery(sql)
+								  	If rs.RowCount>0 Then
+										Msgbox("มีรายชื่อนี้แล้วในระบบ","แจ้งเตือน")
+										Return
+									End If
+										Dim sqlfood As String
+										sqlfood="insert into menufood("
+					'					sqlfood=sqlfood & " menufood_id," '1
+										sqlfood=sqlfood & " menufood_name"
+										sqlfood=sqlfood & " )values("
+					'					sqlfood=sqlfood & " '"&idmenu&"'," '1
+										sqlfood=sqlfood & " '"&txtmenu.text&"'"
+										sqlfood=sqlfood & " )"
+								        dbSQL.ExecNonQuery(sqlfood) 
+										Msgbox("บันทึกเมนูสำเร็จ","แจ้งเตือน")
+								 btnmenufood_Click
+						
+					Else If dataMode="Edit" Then
+								'	dataMode="edit"			ปุ่มเก่า
+									Dim i As Int
+									i = Msgbox2("ยืนยันการแก้ไขชื่อเมนูหรือไม่","แจ้งเตือน","ใช่","","ยกเลิก",Null)
+									If i = -1 Then
+										Dim sqlfood As String
+									        sqlfood="update   menufood set "
+											sqlfood=sqlfood & " menufood_name= '"&txtmenu.text&"' " 
+											sqlfood=sqlfood & " where menufood_id='" & idmenu & "' "
+											dbSQL.ExecNonQuery(sqlfood) 
+											Log("success")
+									Else If i = -2 Then
+										Return
+									End If
+					Else
+							Return
+					End If
+		Catch
+		Msgbox(LastException,"x")
+		End Try
+		
+End Sub
+
+
+Sub btnmenuback_Click		'{
+	Activity.RemoveAllViews
+	Activity.LoadLayout("detailmenu")
+	showmenu
+	
+End Sub
+Sub showmatmenu				'วัตถุดิบในเมนู		
+  Table1.Initialize(Me, "Table_matmenu", 3)
+  Table1.AddToActivity(Activity,0,btnaddmatmenu.Top + btnaddmatmenu.Height ,100%x,100%y - btnaddmatmenu.Height)
+  Table1.SetHeader(Array As String("id","ชื่อวัตถุดิบ","ปริมาณ(กรัม)"))		
+  Table1.SetColumnsWidths(Array As Int(0,60%x,40%x)) 
+  Dim rs As Cursor
+  Dim sql As String 
+		  sql="select detailmenu.material_amount,"
+		  sql=sql & "  detailmenu.material_id,"
+		  sql=sql & "  material.material_name, "
+		  sql=sql & "  detailmenu.menufood_id from detailmenu "
+		  sql=sql & "  inner join material on material.material_id=detailmenu.material_id "
+		  sql=sql & " where menufood_id='"& idmenu & "'"
+		  
+		  rs=dbSQL.ExecQuery(sql)
+		  Table1.ClearAll
+		  	For i = 0 To rs.RowCount -1
+		     rs.Position =i
+			   Table1.AddRow(Array As String(rs.GetString("material_id"), rs.GetString("material_name") , rs.GetString("material_amount")))
+			   
+			Next 		
+End Sub
+Sub btnconmenu_Click
+			If  txtmenup3.text="" Then
+				Msgbox("โปรดใส่ปริมาณ","แจ้งเตือน")
+				txtmenup3.RequestFocus
+				Return	
+			End If
+'				Dim rs As Cursor		'ค้นหา ชื่อซ้ำ ว่ามีหรือไม่ในฐานข้อมูล
+'			    Dim sql As String 
+'			    sql="select menufood_name from menufood where menufood_name='" & txtmenu.text & "'"
+'			    rs=dbSQL.ExecQuery(sql)
+'				  	If rs.RowCount>0 Then
+'						Msgbox("มีรายชื่อนี้แล้วในระบบ","แจ้งเตือน")
+'						Return
+'					End If
+			
+						Dim sqlfood As String
+						sqlfood="insert into detailmenu("
+						sqlfood=sqlfood & " material_id,"
+						sqlfood=sqlfood & " menufood_id,"
+						sqlfood=sqlfood & " material_amount"
+						sqlfood=sqlfood & " )values("
+						sqlfood=sqlfood & "'"&txtmenup1.Text&"',"
+						sqlfood=sqlfood & "'"&idmenu&"',"
+						sqlfood=sqlfood & "'"&txtmenup3.text&"'"
+						sqlfood=sqlfood & " )"
+				        dbSQL.ExecNonQuery(sqlfood)
+							showselectmat
+						Msgbox("บันทึกสำเร็จ","แจ้งเตือน")	
+						txtmenup1.Text = ""
+					    txtmenup2.Text = ""
+						txtmenup3.Text = ""
+						
+	
+End Sub			
+
+Sub Table_matmenu_CellClick (Col As Int, Row As Int)
+		If Col=1 Then
+			idmenu = Table1.GetValue(0,Row)
+			showmatmenu	
+			
+			
+		else if Col=2 Then
+			Dim i As Int
+				i = Msgbox2("กรุณาเลือก?", "แจ้งเตือน", "แก้ไข", "", "ลบ", Null)
+					If i=-1 Then   'do Yes code
+						Dim sql As String 																			'จัดการฐานข้อมูล
+					    sql="delete from detailmenu where material_id='" & Table1.GetValue(0,Row) &"'"      'คำสั่งลบข้อมูล ใน-ชื่อตาราง-ตำแหน่งตาราง  
+				     	dbSQL.ExecNonQuery(sql)
+						Table1.ClearAll
+			           	showmatmenu
+					Else If i=-2 Then
+					   Return
+					Else
+						Return
+					End If
+		End If
+	Msgbox("ลบข้อมูลสำเร็จ","แจ้งเตือน")
+End Sub
+
+Sub btnsavenmenu_Click	'ปุ่มบันทึกชื่อเมนูอาหาร
+			dataMode="Edit" 'เก็บค่า edit เพื่อให้รู้ว่านี่คือการกดปุ่มแก้ไข
+						
+						Activity.RemoveAllViews
+						Activity.LoadLayout("cremenu")
+							Dim rs As Cursor
+							Dim sql As String 
+								sql="select menufood_id,menufood_name from menufood where menufood_id='" & idmenu & "' "			'เรียกเมนูจากฐานข้อมูลมาแสดง
+									rs=dbSQL.ExecQuery(sql)
+									rs.Position =0
+								    txtmenu.Text = rs.GetString("menufood_name")
+
+'		dataMode="edit"			ปุ่มเก่า
+'			Dim i As Int
+'			i = Msgbox2("ยืนยันการแก้ไขชื่อเมนูหรือไม่","แจ้งเตือน","ใช่","","ยกเลิก",Null)
+'				If i = -1 Then
+'					Dim sqlfood As String
+'				        sqlfood="update   menufood set "
+'						sqlfood=sqlfood & " menufood_name= '"&txtmenu1.text&"' " 
+'						sqlfood=sqlfood & " where menufood_id='" & idmenu & "' "
+'						dbSQL.ExecNonQuery(sqlfood) 
+'						Log("success")
+'				Else 
+'					Return
+'				End If
+End Sub
+
+Sub btnaddmatmenu_Click	'panel เมนู
+		Panel2.Top =0
+		Panel2.Left =0
+		Panel2.Height =100%y
+		Panel2.Width =100%x
+		Panel2.Visible=True		
+		Panel2.BringToFront 
+			  showselectmat
+End Sub
+
+Sub showselectmat
+			lvmatmenu.Clear 
+			  Dim rs As Cursor
+			  Dim sql As String 
+			  sql="select material_id, material_name from material"
+			  sql=sql & " where material_id not in( select material_id from  detailmenu where  menufood_id='" & idmenu & "' )"
+			  rs=dbSQL.ExecQuery(sql)
+			  For i = 0 To rs.RowCount -1
+			     rs.Position =i
+				 lvmatmenu.AddSingleLine2(rs.GetString("material_name"),rs.GetString("material_id"))
+			 Next
+End Sub
+
+Sub lvmatmenu_itemClick(Position As Int,Value As Object)
+			  Dim rs As Cursor
+			  Dim sql As String 
+		  	  sql="select material_name,material_id from material where material_id='"& Value &"'"
+			  rs=dbSQL.ExecQuery(sql)
+			  rs.Position = 0
+			 txtmenup1.Text = Value
+			 txtmenup2.Text = rs.GetString("material_name")
+End Sub
+
+Sub btnblackmngmenu_Click
+		Panel2.Visible=False	
+		Table1.ClearAll
+		showmatmenu
+End Sub
+
+Sub btnnutriback_Click
+	Activity.RemoveAllViews
+	Activity.LoadLayout("home")
+End Sub
+
+'--------------------------------------------------------------------------------------หน้าจัดการมื้อ
+Sub btnrepastback_Click
+	Activity.RemoveAllViews
+	Activity.LoadLayout("home")
+End Sub
+
+Sub lblmonthre_Click
+	Dim ret As Int 
+	Dim Dd As DateDialog													'เลือกวันหน้าจัดการมื้อ
+	Dd.Year = DateTime.GetYear(DateTime.Now)
+	Dd.Month = DateTime.GetMonth(DateTime.Now)	
+	Dd.DayOfMonth = DateTime.GetDayOfMonth(DateTime.Now)
+	ret = Dd.Show("แตะเพื่อเลือกวันที่", "ต้้งค่ามื้ออาหาร","No","Yes", "", Null)
+		If ret=-3 Then
+				lblmonthre.text = Dd.DayOfMonth & "/" & Dd.Month & "/" & Dd.Year 
+				Dim a As String 
+				Dim b As String 
+				a=Dd.Month 
+				b=Dd.DayOfMonth
+				If a.Length =1 Then a="0" & a
+				If b.Length=1 Then b="0" & b
+				lblmonthre.tag =  Dd.Year & "-" & a & "-" & b
+		Else
+			Return
+		End If
+	
+End Sub
+Sub lblmonthreend_Click			'เลือกวันหน้าจัดการมื้อ
+	Dim set As Int 
+	Dim Dd As DateDialog													'เลือกวันหน้าจัดการมื้อ
+	Dd.Year = DateTime.GetYear(DateTime.Now)
+	Dd.Month = DateTime.GetMonth(DateTime.Now)	
+	Dd.DayOfMonth = DateTime.GetDayOfMonth(DateTime.Now)
+	set = Dd.Show("แตะเพื่อเลือกวันที่", "ต้้งค่ามื้ออาหาร", "No" , "Yes" , "" , Null)
+	If set=-3 Then
+				lblmonthreend.text = Dd.DayOfMonth & "/" & Dd.Month & "/" & Dd.Year 
+				Dim a As String 
+				Dim b As String 
+				a=Dd.Month 
+				b=Dd.DayOfMonth
+				If a.Length =1 Then a="0" & a
+				If b.Length=1 Then b="0" & b
+				lblmonthreend.tag =  Dd.Year & "-" & a & "-" & b	
+	Else
+			Return
+	End If
+						 '  Msgbox("กดที่ปุ่ม'วันที่'เพื่อเลือกอีกครั้ง","วันที่ได้เคยถูกเลือกไปแล้ว")
+'						   Activity.RemoveAllViews
+'						   Activity.LoadLayout("mng_repast") 'เรียกหน้าซ้ำอีกครั้ง
+'							    Dim rs As Cursor
+'								Dim sql As String 
+'								sql="select namesuser,user_id from recorduser where user_id='" & idname & "' "			'เรียกเมนูจากฐานข้อมูลมาแสดง
+'								rs=dbSQL.ExecQuery(sql)
+'								rs.Position =0
+'				  			    lblidname.Text = rs.GetInt("user_id")
+'								lblnamere.Text = rs.GetString("namesuser")
+'							Return	
+'						End If
+End Sub
+
+Sub btnokmre_Click
+Try
+DateTime.DateFormat = "yyyy-MM-dd"
+Dim Tom As Long
+Dim iDay As Int
+Dim DaySave As String 
+       
+		If lblmonthre.Text="- เลือก -" Or lblmonthreend.Text="- เลือก -" Then
+			Msgbox("ตรวจสอบวันที่ในการเพิ่มมื้ออาหาร","แจ้งเตือน")
+			Return
+		End If 
+			 		reUpdate="ALL"
+					Dim rs As Cursor			'
+					Dim sql As String 
+					sql="select user_id,repast_date from repastname where user_id='" & idname & "' and repast_date between '" & lblmonthre.Tag &"'  And '" & lblmonthreend.Tag &"' "
+					rs=dbSQL.ExecQuery(sql)
+					rs.Position=0
+						If rs.rowcount > 0 Then
+								Dim i As Int
+								i = Msgbox2("ในระหว่างวันที่เลือกมีการบันทึกมื้อในวันที่แล้ว ต้องการ 'แก้ไขทับ' หรือ 'ข้าม' มื้ออาหาร", "แจ้งเตือน", "แก้ไข", "", "ข้าม", Null)
+						    		If i =-1 Then 			'แก้ไข	
+						   				reUpdate="Y"
+						    		Else If i= -2  Then 	'ข้าม									
+										reUpdate="N"
+						   			End If
+						End If    									
+							              If  reUpdate="Y" Then
+											    dbSQL.ExecNonQuery("delete from repastname where user_id='" & idname & "'and repast_date between '" & lblmonthre.Tag &"'  And '" & lblmonthreend.Tag &"'" )
+										  End If
+										   
+											 Do While  DaySave <>  lblmonthreend.Tag  	
+											     Tom = DateTime.Add(DateTime.DateParse(lblmonthre.Tag), 0, 0, iDay)
+											     DaySave=DateTime.Date(Tom)
+														If  reUpdate="ALL" Or  reUpdate="Y"  Then
+														    SaveNewALL(DaySave)
+														Else 'N ข้ามที่มีข้อมูลแล้ว
+														    SaveUpdate(DaySave)
+														End If 
+															 iDay=iDay+1
+											  Loop
+				
+	
+	Msgbox("เพิ่มมื้ออาหารสำเร็จ","แจ้งเตือน")
+	Activity.RemoveAllViews
+	Activity.LoadLayout("showrepast")
+	pnshowre.Visible=True	
+	showrepast					
+	Catch
+	Msgbox(LastException,"x")
+	End Try
+	
+End Sub
+Sub SaveUpdate(DaySave As String)				'repastcount ขึ้นเลข 2 4 6 ไม่ตรง***********************************************************************************
+
+'	  Dim rs As Cursor		'ค้นหา มื้อซ้ำ ว่ามีหรือไม่ในฐานข้อมูล
+'	  Dim sql As String 
+''	  sql="select user_id,repast_date from repastname where user_id='" &idname1 &"' and repast_date = '" &  DaySave  &"' "
+''	  sql="select usernick from recorduser where namesuser='" & txtnickname.text & "'"
+'	  rs=dbSQL.ExecQuery(sql)
+'	  	If rs.RowCount>0 Then
+'			Msgbox("มีชื่อย่อ"+ txtnickname.text +"นี้แล้วในระบบ","แจ้งเตือน")
+'			Return
+'		End If		
+				Dim rs As Cursor			'
+				Dim sql As String 
+					sql="select user_id,repast_date from repastname where user_id='" &idname1 &"' and repast_date = '" &  DaySave  &"' "
+					rs=dbSQL.ExecQuery(sql)
+			    	If rs.rowcount = 0   Then
+							If cbone.Checked=True Then																		
+								Dim sqlfood As String
+										sqlfood="insert into repastname("
+										sqlfood=sqlfood & " repastname_name,"
+										sqlfood=sqlfood & " repast_date,"
+										sqlfood=sqlfood & " repast_count,"
+										sqlfood=sqlfood & " user_id"
+										sqlfood=sqlfood & " )values("
+										sqlfood=sqlfood & "'"&txtone.Text&"'," 'เก็บชื่อมื้ออาหาร1
+										sqlfood=sqlfood & "'"& DaySave &"',"
+										sqlfood=sqlfood & "'1',"
+										sqlfood=sqlfood & "'"&idname1&"'"
+										sqlfood=sqlfood & " )"
+										dbSQL.ExecNonQuery(sqlfood)
+							End If
+							If cbtwo.Checked=True Then
+										sqlfood="insert into repastname("
+										sqlfood=sqlfood & " repastname_name,"
+										sqlfood=sqlfood & " repast_date,"
+										sqlfood=sqlfood & " repast_count,"
+										sqlfood=sqlfood & " user_id" 
+										sqlfood=sqlfood & " )values("
+										sqlfood=sqlfood & "'"&txttwo.Text&"'," 'เก็บชื่อมื้ออาหาร2
+									    sqlfood=sqlfood & "'"& DaySave &"',"
+										sqlfood=sqlfood & "'2',"
+										sqlfood=sqlfood & "'"&idname1&"'"
+										sqlfood=sqlfood & " )"
+										dbSQL.ExecNonQuery(sqlfood)
+							End If
+							If cbthree.Checked=True Then
+										sqlfood="insert into repastname("
+										sqlfood=sqlfood & " repastname_name,"
+										sqlfood=sqlfood & " repast_date,"
+										sqlfood=sqlfood & " repast_count,"
+										sqlfood=sqlfood & " user_id"
+										sqlfood=sqlfood & " )values("
+										sqlfood=sqlfood & "'"&txtthree.Text&"'," 'เก็บชื่อมื้ออาหาร4
+										sqlfood=sqlfood & "'"& DaySave &"',"
+										sqlfood=sqlfood & "'3',"
+										sqlfood=sqlfood & "'"&idname1&"'"
+										sqlfood=sqlfood & " )"
+										dbSQL.ExecNonQuery(sqlfood)
+							End If
+							If cbfour.Checked=True Then
+										sqlfood="insert into repastname("
+										sqlfood=sqlfood & " repastname_name,"
+										sqlfood=sqlfood & " repast_date,"
+										sqlfood=sqlfood & " repast_count,"
+										sqlfood=sqlfood & " user_id"
+										sqlfood=sqlfood & " )values("
+										sqlfood=sqlfood & "'"&txtfour.Text&"'," 'เก็บชื่อมื้ออาหาร4
+										 sqlfood=sqlfood & "'"& DaySave &"',"
+										 sqlfood=sqlfood & "'4',"
+										sqlfood=sqlfood & "'"&idname1&"'"
+										sqlfood=sqlfood & " )"
+										dbSQL.ExecNonQuery(sqlfood)
+							End If
+							If cbfive.Checked=True Then
+										sqlfood="insert into repastname("
+										sqlfood=sqlfood & " repastname_name,"
+										sqlfood=sqlfood & " repast_date,"
+										sqlfood=sqlfood & " repast_count,"
+										sqlfood=sqlfood & " user_id"
+										sqlfood=sqlfood & " )values("
+										sqlfood=sqlfood & "'"&txtfive.Text&"'," 'เก็บชื่อมื้ออาหาร5
+										sqlfood=sqlfood & "'"& DaySave &"',"
+										sqlfood=sqlfood & "'5',"
+										sqlfood=sqlfood & "'"&idname1&"'"
+										sqlfood=sqlfood & " )"
+										dbSQL.ExecNonQuery(sqlfood)
+							End If
+							If cbsix.Checked=True Then
+										sqlfood="insert into repastname("
+										sqlfood=sqlfood & " repastname_name,"
+										sqlfood=sqlfood & " repast_date,"
+										sqlfood=sqlfood & " repast_count,"
+										sqlfood=sqlfood & " user_id"
+										sqlfood=sqlfood & " )values("
+										sqlfood=sqlfood & "'"&txtsix.Text&"'," 'เก็บชื่อมื้ออาหาร6
+										sqlfood=sqlfood & "'"& DaySave &"',"
+										sqlfood=sqlfood & "'6',"
+										sqlfood=sqlfood & "'"&idname1&"'"
+										sqlfood=sqlfood & " )"
+										dbSQL.ExecNonQuery(sqlfood)
+							End If
+							If cbseven.Checked=True Then
+										sqlfood="insert into repastname("
+										sqlfood=sqlfood & " repastname_name,"
+										sqlfood=sqlfood & " repast_date,"
+										sqlfood=sqlfood & " repast_count,"
+										sqlfood=sqlfood & " user_id"
+										sqlfood=sqlfood & " )values("
+										sqlfood=sqlfood & "'"&txtseven.Text&"'," 'เก็บชื่อมื้ออาหาร7
+										sqlfood=sqlfood & "'"& DaySave &"',"
+										sqlfood=sqlfood & "'7',"
+										sqlfood=sqlfood & "'"&idname1&"'"
+										sqlfood=sqlfood & " )"
+								        dbSQL.ExecNonQuery(sqlfood)
+							
+							End If
+					End If 
+End Sub
+
+Sub SaveNewALL(DaySave As String)
+					If cbone.Checked=True Then	
+							Dim sqlfood As String
+								sqlfood="insert into repastname("
+								sqlfood=sqlfood & " repastname_name,"
+								sqlfood=sqlfood & " repast_date,"
+								sqlfood=sqlfood & " repast_count,"
+								sqlfood=sqlfood & " user_id"
+								sqlfood=sqlfood & " )values("
+								sqlfood=sqlfood & "'"&txtone.Text&"'," 'เก็บชื่อมื้ออาหาร1
+								sqlfood=sqlfood & "'"& DaySave &"',"
+								sqlfood=sqlfood & "'1',"
+								sqlfood=sqlfood & "'"&idname1&"'"
+								sqlfood=sqlfood & " )"
+								dbSQL.ExecNonQuery(sqlfood)
+					End If
+					If cbtwo.Checked=True Then
+								sqlfood="insert into repastname("
+								sqlfood=sqlfood & " repastname_name,"
+								sqlfood=sqlfood & " repast_date,"
+								sqlfood=sqlfood & " repast_count,"
+								sqlfood=sqlfood & " user_id" 
+								sqlfood=sqlfood & " )values("
+								sqlfood=sqlfood & "'"&txttwo.Text&"'," 'เก็บชื่อมื้ออาหาร2
+							    sqlfood=sqlfood & "'"& DaySave &"',"
+								sqlfood=sqlfood & "'2',"
+								sqlfood=sqlfood & "'"&idname1&"'"
+								sqlfood=sqlfood & " )"
+								dbSQL.ExecNonQuery(sqlfood)
+					End If
+					If cbthree.Checked=True Then
+								sqlfood="insert into repastname("
+								sqlfood=sqlfood & " repastname_name,"
+								sqlfood=sqlfood & " repast_date,"
+								sqlfood=sqlfood & " repast_count,"
+								sqlfood=sqlfood & " user_id"
+								sqlfood=sqlfood & " )values("
+								sqlfood=sqlfood & "'"&txtthree.Text&"'," 'เก็บชื่อมื้ออาหาร4
+								sqlfood=sqlfood & "'"& DaySave &"',"
+								sqlfood=sqlfood & "'3',"
+								sqlfood=sqlfood & "'"&idname1&"'"
+								sqlfood=sqlfood & " )"
+								dbSQL.ExecNonQuery(sqlfood)
+					End If
+					If cbfour.Checked=True Then
+								sqlfood="insert into repastname("
+								sqlfood=sqlfood & " repastname_name,"
+								sqlfood=sqlfood & " repast_date,"
+								sqlfood=sqlfood & " repast_count,"
+								sqlfood=sqlfood & " user_id"
+								sqlfood=sqlfood & " )values("
+								sqlfood=sqlfood & "'"&txtfour.Text&"'," 'เก็บชื่อมื้ออาหาร4
+								 sqlfood=sqlfood & "'"& DaySave &"',"
+								 sqlfood=sqlfood & "'4',"
+								sqlfood=sqlfood & "'"&idname1&"'"
+								sqlfood=sqlfood & " )"
+								dbSQL.ExecNonQuery(sqlfood)
+					End If
+					If cbfive.Checked=True Then
+								sqlfood="insert into repastname("
+								sqlfood=sqlfood & " repastname_name,"
+								sqlfood=sqlfood & " repast_date,"
+								sqlfood=sqlfood & " repast_count,"
+								sqlfood=sqlfood & " user_id"
+								sqlfood=sqlfood & " )values("
+								sqlfood=sqlfood & "'"&txtfive.Text&"'," 'เก็บชื่อมื้ออาหาร5
+								sqlfood=sqlfood & "'"& DaySave &"',"
+								sqlfood=sqlfood & "'5',"
+								sqlfood=sqlfood & "'"&idname1&"'"
+								sqlfood=sqlfood & " )"
+								dbSQL.ExecNonQuery(sqlfood)
+					End If
+					If cbsix.Checked=True Then
+								sqlfood="insert into repastname("
+								sqlfood=sqlfood & " repastname_name,"
+								sqlfood=sqlfood & " repast_date,"
+								sqlfood=sqlfood & " repast_count,"
+								sqlfood=sqlfood & " user_id"
+								sqlfood=sqlfood & " )values("
+								sqlfood=sqlfood & "'"&txtsix.Text&"'," 'เก็บชื่อมื้ออาหาร6
+								sqlfood=sqlfood & "'"& DaySave &"',"
+								sqlfood=sqlfood & "'6',"
+								sqlfood=sqlfood & "'"&idname1&"'"
+								sqlfood=sqlfood & " )"
+								dbSQL.ExecNonQuery(sqlfood)
+					End If
+					If cbseven.Checked=True Then
+								sqlfood="insert into repastname("
+								sqlfood=sqlfood & " repastname_name,"
+								sqlfood=sqlfood & " repast_date,"
+								sqlfood=sqlfood & " repast_count,"
+								sqlfood=sqlfood & " user_id"
+								sqlfood=sqlfood & " )values("
+								sqlfood=sqlfood & "'"&txtseven.Text&"'," 'เก็บชื่อมื้ออาหาร7
+								sqlfood=sqlfood & "'"& DaySave &"',"
+								sqlfood=sqlfood & "'7',"
+								sqlfood=sqlfood & "'"&idname1&"'"
+								sqlfood=sqlfood & " )"
+						        dbSQL.ExecNonQuery(sqlfood)
+					End If
+End Sub
+
+Sub test_Click		'ปุ่มไว้ดูฐานข้อมูล 
+	If	Pnre.Visible=True Then
+	Pnre.Visible=False
+	Table1.ClearAll
+	Activity.RemoveAllViews
+	Activity.LoadLayout("mng_repast")
+			Dim rs As Cursor
+			Dim sql As String 
+				sql="select namesuser,user_id from recorduser"			'เรียกเมนูจากฐานข้อมูลมาแสดง
+				rs=dbSQL.ExecQuery(sql)
+				rs.Position =0
+  			    lblidname.Text = rs.GetInt("user_id")
+				lblnamere.Text = rs.GetString("namesuser")
+	
+	Else If Pnre.Visible=False Then
+		  Table1.Initialize(Me, "Table_test", 5)  
+		  Table1.AddToActivity(Activity, 0,lblrepast.Top + lblrepast.Height ,100%x,100%y - lblrepast.Height)
+		  Table1.SetHeader(Array As String("id","ชื่อมื้อ","วันที่","จำนวน","ชื่อผู้เพิ่มไปแล้ว"))		
+		  Table1.SetColumnsWidths(Array As Int(5%x,35%x,20%x,20%x,20%x)) 								
+		  Dim rs As Cursor
+		  Dim sql As String 
+		  sql="select repastname_id,repastname_name,repast_date,repast_count,user_id from repastname order by repast_date"
+		  rs=dbSQL.ExecQuery(sql)
+		  		For i = 0 To rs.RowCount -1
+		   	    rs.Position =i
+			    Table1.AddRow(Array As String(rs.GetString("repastname_id") , rs.GetString("repastname_name") , rs.GetString("repast_date") ,rs.GetString("repast_count"),rs.GetString("user_id")))
+				Next 
+			Pnre.Visible=True
+	End If
+End Sub
+
+Sub showrepast
+		
+		  Table1.Initialize(Me, "Table_namedatere", 4)   'ปกติ5
+		  Table1.AddToActivity(Activity, 0,lblshowreintro1.Top+lblshowreintro1.Height,98%x,98%y - (btncopyrepast.Height+ btncopyrepast.Height))
+		  Table1.SetHeader(Array As String("id","วันที่","ชื่อมื้อ","ชื่อ"))		 '"จำนวน",    ',"ชื่อผู้เพิ่มไปแล้ว"
+		  Table1.SetColumnsWidths(Array As Int(0,30%x,40%x,30%x)) 	
+			Dim rs As Cursor
+			Dim sql As String 
+			sql="select repast_date,user_id,repastname_name from repastname where user_id='" & idname1 & "'"			'เรียกเมนูจากฐานข้อมูลมาแสดง 'repast_cont ' repastname_id
+			sql=sql & "order by repast_date"
+			rs=dbSQL.ExecQuery(sql)
+			Table1.ClearAll
+		  		For i = 0 To rs.RowCount -1
+		   	    rs.Position =i
+			    Table1.AddRow(Array As String(rs.GetString("user_id") ,rs.GetString("repast_date"), rs.GetString("repastname_name"),rs.GetString("user_id") )) 
+				Next 
+
+End Sub
+
+'Sub gatnameinre(rename As String)					'ชื่อ
+'   Dim ss As String 
+'	Dim rs As Cursor
+'		ss="select namesuser from repastname where user_id='"& idname1 &"'  "
+''		ss="select sum(material.fat * material_amount) as totalG from material inner join detailmenu on material.material_id = detailmenu.material_id "
+''		ss=ss & " where detailmenu.menufood_id = '" & idFood & "' "
+'		rs=dbSQL.ExecQuery(ss)
+'		
+''		If rs.RowCount >0 Then 
+'		rs.Position=0
+''		   If rs.GetString("totalG") =Null Then
+''		     Return "" 									
+''		   Else 
+''		     Return rs.GetString("totalG") 
+''		   End If   
+''		Else
+''		   Return ""
+''		End If 
+'End Sub 
+
+Sub btncopyre_Click														'+++แสดงวันที่ ที่เพิ่มไปแล้ว+++
+	
+'	  Dim rs0 As Cursor		'ค้นหา ชื่อซ้ำ ว่ามีหรือไม่ในฐานข้อมูล
+'	  Dim sql0 As String 
+'	  sql0="select repast_date,user_id,repastname_name from repastname where user_id='" & idname & "' "
+'	  rs0=dbSQL.ExecQuery(sql0)
+''	  	If rs0.RowCount>0 Then
+''			Msgbox("โปรดตั้งค่ามื้ออาหาร","แจ้งเตือน")
+''			Activity.RemoveAllViews
+''			Activity.LoadLayout("mng_repast")
+''			Return
+''		Else
+''			Return
+''		End If
+	Activity.RemoveAllViews
+	Activity.LoadLayout("showrepast")
+	pnshowre.Visible=False	
+	showrepast
+
+
+' Table1.Initialize(Me, "Table_namedatere2", 3)   'ปกติ5
+'		  Table1.AddToActivity(Activity, 0,lblshowreintro1.Top+lblshowreintro1.Height,100%x,100%y - (btncopyrepast.Top+ btncopyrepast.Height))
+'		  Table1.SetHeader(Array As String("ชื่อ","ชื่อมื้อ","วันที่"))		 '"จำนวน",    ',"ชื่อผู้เพิ่มไปแล้ว"
+'		  Table1.SetColumnsWidths(Array As Int(30%x,30%x,40%x)) 	
+'			Dim rs As Cursor
+'			Dim sql As String 
+'			sql="select repast_date,user_id,repastname_name from repastname where user_id='" & idname & "' "			'เรียกเมนูจากฐานข้อมูลมาแสดง 'repast_cont ' repastname_id
+'			sql=sql & "order by repast_date"
+'			rs=dbSQL.ExecQuery(sql)
+'			Table1.ClearAll
+'		  		For i = 0 To rs.RowCount -1
+'		   	    rs.Position =i
+'			    Table1.AddRow(Array As String(rs.GetString("user_id") , rs.GetString("repastname_name") , rs.GetString("repast_date") )) ',rs.GetString("repast_cont")',rs.GetString("c")
+'				Next 
+
+			
+End Sub
+'----------------------------------------------------------------------------------------------หน้าจัดการมื้อend
+'----------------------------------------------------------------------------------------------หน้าแสดง+คัดลอกมื้อ
+
+
+'Sub btnviewrepast_Click
+'	Activity.RemoveAllViews
+'	Activity.LoadLayout("showrepast")
+'	pnshowre.Visible=False
+'	showrepast
+''		Dim sql As String
+''		sql="delete from repastname"'"
+''		dbSQL.ExecNonQuery(sql)
+'
+'End Sub
+
+Sub btnblackhome2_Click
+'ProgressDialogShow("กรุณารอสักครู่...")
+'		DoEvents : DoEvents  
+	If pnshowre.Visible=False Then
+			Table1.ClearAll
+			Activity.RemoveAllViews
+			Activity.LoadLayout("mng_repast")
+			Dim rs As Cursor
+			Dim sql As String 
+				sql="select namesuser from recorduser where user_id='" & idname & "' "			'เรียกเมนูจากฐานข้อมูลมาแสดง
+				rs=dbSQL.ExecQuery(sql)
+				rs.Position =0
+				lblnamere.Text = rs.GetString("namesuser")
+			
+	Else If pnshowre.Visible=True Then
+			pnshowre.Visible=False
+			
+			Table1.ClearAll
+			Activity.RemoveAllViews
+			Activity.LoadLayout("mng_repast")
+			Dim rs As Cursor
+			Dim sql As String 
+				sql="select namesuser from recorduser where user_id='" & idname & "' "			'เรียกเมนูจากฐานข้อมูลมาแสดง
+				rs=dbSQL.ExecQuery(sql)
+				rs.Position =0
+				lblnamere.Text = rs.GetString("namesuser")
+			
+	End If	
+End Sub
+
+Sub showcopynamedate
+TotalRows=0
+	  Table1.Initialize(Me, "Table_copynamedate", 3)   'ปกติ5
+	  Table1.AddToActivity(pnshowre, 0,lblshowreintro1.Top+lblshowreintro1.Height,100%x,100%y-btncopyrepast.Height)
+	  Table1.SetHeader(Array As String("รหัส","ชื่อผู้ใช้งาน","เลือกหลายชื่อ"))		 '"จำนวน",    ',"ชื่อผู้เพิ่มไปแล้ว"
+	  Table1.SetColumnsWidths(Array As Int(40%x,40%x,20%x)) 	
+			  Dim rs As Cursor
+			  Dim sql As String 	
+			  sql="select user_id,namesuser,usernick from recorduser"
+			  sql=sql & " where user_id not in( select user_id from  repastname where  user_id='" & idname & "' )"
+			  rs=dbSQL.ExecQuery(sql)
+			  For i = 0 To rs.RowCount -1
+			     rs.Position =i
+				 Table1.AddRow(Array As String(rs.GetString("user_id") , rs.GetString("namesuser") ,("...") ))
+				 TotalRows=TotalRows+1
+			  Next 
+End Sub
+
+'	i = Msgbox2("ยืนยันการแก้ไขชื่อเมนูหรือไม่","แจ้งเตือน","ใช่","","ยกเลิก",Null)
+'				If i = -1 Then
+'					Dim sqlfood As String
+'				        sqlfood="update   menufood set "
+'						sqlfood=sqlfood & " menufood_name= '"&txtmenu1.text&"' " 
+'						sqlfood=sqlfood & " where menufood_id='" & idmenu & "' "
+'						dbSQL.ExecNonQuery(sqlfood) 
+'						Log("success")
+'				Else 
+'					Return
+'				End If
+Sub btncopyselect_Click
+'Try
+
+'
+		Dim A As Int
+		A = Msgbox2("การแก้ไขนี้จะทำให้ข้อมูลของมื้ออาหารในชื่อที่เลือกมีการเปลี่ยนแปลง","แจ้งเตือน","ยกเลิก","","แก้ไขทับ",Null)
+			If A = -1 Then
+				Msgbox("ยกเลิกการคัดลอกมื้ออาหาร","แจ้งเตือน")
+				pnshowre.Visible=False
+				Return
+			Else If A = -2 Then
+			
+				Dim rs As Cursor
+				Dim sql As String 
+				sql="select repast_date,repastname_name,repast_count from repastname where user_id='" & idname & "' "			'เรียกเมนูจากฐานข้อมูลมาแสดง 'repast_cont ' repastname_id
+				sql=sql & "order by repast_date"
+				rs=dbSQL.ExecQuery(sql)
+					For i = 0 To TotalRows-1 
+						   If Table1.GetValue(2,i)= "X" Then  'start copy
+								    For r= 0 To rs.RowCount -1
+										
+'									 		Msgbox(Table1.GetValue(0,i),"x")	'เช็คการเพิ่มชื่อ
+								         	rs.Position = r
+												
+												Dim sqlfood As String
+												sqlfood="insert into repastname("
+												sqlfood=sqlfood & " repastname_name,"
+												sqlfood=sqlfood & " repast_date,"
+												sqlfood=sqlfood & " repast_count,"
+												sqlfood=sqlfood & " user_id"
+												sqlfood=sqlfood & " )values("
+												sqlfood=sqlfood & "'"& rs.GetString("repastname_name") &"'," 'เก็บชื่อมื้ออาหาร1
+												sqlfood=sqlfood & "'"& rs.GetString("repast_date") &"',"
+												sqlfood=sqlfood & "'"& rs.GetString("repast_count") &"',"
+												sqlfood=sqlfood & "'"& Table1.GetValue(0,i) &"'"
+												sqlfood=sqlfood & " )"
+												dbSQL.ExecNonQuery(sqlfood)
+									 Next	
+									 			Msgbox("คัดลอกสำเร็จ","แจ้งเตือน") 
+									 
+						   
+						   End If 
+					 Next 
+			Else 
+				Return
+			End If 
+	            
+'Catch
+'	Msgbox(LastException,"x")
+'End Try
+End Sub
+
+Sub Table_copynamedate_CellClick (Col As Int, Row As Int) 
+	If Col =2 Then
+	   If Table1.GetValue(2,Row)="..." Then
+	    Table1.SetValue(2,Row,"X")
+	   Else
+	    Table1.SetValue(2,Row,"...")
+	   End If 
+	 Else 
+	 	Return
+	End If 
+End Sub
+
+Sub btncopyrepast_Click 
+	Try
+		Dim i As Int
+		If pnshowre.Visible=False Then
+			pnshowre.Top =lblshowreintro1.Top + lblshowreintro1.Height
+			pnshowre.Height =100%y 
+			pnshowre.Width =100%x 
+			pnshowre.Visible=True		
+			pnshowre.BringToFront 
+'			btncopyrepast.Visible=False
+'			btncopyrepast.Enabled=False
+				 showcopynamedate
+				 i = Msgbox2("ต้องการคัดลอกมื้ออาหารหรือไม่","แจ้งเตือน","ยกเลิกกลับหน้าก่อน","","ใช่",Null)
+										If i = -1 Then
+											Table1.ClearAll
+											pnshowre.Visible=False	
+											Return
+										Else If i=-2 Then
+											Return
+										Else
+											Return
+										End If	
+				  
+		  Else If pnshowre.Visible=True Then
+		  	pnshowre.Visible=False
+'			btncopyrepast.Visible=True
+'			btncopyrepast.Enabled=True
+			showrepast
+
+			End If
+	Catch
+	Msgbox(LastException,"x")
+	End Try
+End Sub
+
+'----------------------------------------------------------------------------------------------หน้าแสดง+คัดลอกมื้อend
+'--------------------------------------------------------------------------------------หน้ารายการอาหารของแต่ละวัน
+
+Sub btneatback_Click 'หน้ากินกลับหน้าหลัก
+	Activity.RemoveAllViews
+	Activity.LoadLayout("home")
+End Sub
+	
+Sub btncalmenu_Click 'eatเพิ่มเมนูในมื้ออาหาร
+Try
+	Activity.RemoveAllViews
+	Activity.LoadLayout("eat")
+			Spshowdate.Add("")
+			  Dim rs As Cursor
+  			  Dim sql As String 
+			  sql="select repast_date from repastname where user_id='"& idname &"' group by repast_date order by repast_date "
+			  rs=dbSQL.ExecQuery(sql)
+			  	For i = 0 To rs.RowCount -1
+			     rs.Position =i
+				 
+				        Dim sp() As String
+							sp=Regex.Split("\-",rs.GetString("repast_date"))
+				 
+				 	Spshowdate.Add((sp(2) & "/" & sp(1) & "/" & sp(0)))
+					
+				Next 
+Catch
+Msgbox(LastException,"x")
+End Try
+			
+End Sub
+
+Sub Spshowdate_ItemClick (Position As Int, Value As Object)
+	Try
+	lvfoodinday.Clear
+	lvshowre.Clear
+	Dim sp() As String
+	sp=Regex.Split("\/",Value)
+	
+	idrepast = sp(2) &"-"&sp(1)&"-"&sp(0)
+	
+	Msgbox("เลือกวันที่ "& Value &"","แจ้งเตือน")
+		  Dim rs As Cursor
+		  Dim sql As String
+			  sql="select repastname_name,repastname_id,repast_count,user_id,repast_date from repastname where  user_id='" & idname & "' and repast_date = '" & idrepast & "'"
+			  rs=dbSQL.ExecQuery(sql)
+			  For i = 0 To rs.RowCount -1
+			     rs.Position =i
+				 lvshowre.AddSingleLine2(rs.GetString("repastname_name"),rs.GetString("repastname_id"))
+			  Next
+			  				
+'								Dim rs As Cursor
+'				  				Dim sql As String 
+'								sql=sql & "DROP VIEW FoodNutrient"
+' 								rs=dbSQL.ExecQuery(sql)	
+'								rs.Position =0	
+'										Dim rs As Cursor
+'						  				Dim sql As String 
+'										sql=sql &" CREATE VIEW [FoodNutrient] As Select Me.menufood_id, Me.menufood_name, de.material_id, ma.material_name, de.material_amount, "
+'										sql=sql &" sum(kcal*de.material_amount) As Nkcal, sum(prot*de.material_amount) As Nprot , sum(crab*de.material_amount) As Ncrab , "
+'										sql=sql &" sum(fiber*de.material_amount) As Nfiber ,sum(fat*de.material_amount) As Nfat ,sum(iron*de.material_amount) As Niron, "
+'										sql=sql &" sum(chol*de.material_amount) As Nchol,sum(calc*de.material_amount) As Ncalc,sum(magn*de.material_amount) As Nmagn,"
+'										sql=sql &" sum(pota*de.material_amount) As Npota,sum(sodi*de.material_amount) As Nsodi,sum(zinc*de.material_amount) As Nzinc,"
+'										sql=sql & "sum(vitA*de.material_amount) As NvitA,sum(vitB1*de.material_amount) As NvitB1,sum(vitE*de.material_amount) As NvitE,"
+'										sql=sql & "sum(vitB2*de.material_amount) As NvitB2,sum(vitB3*de.material_amount) As NvitB3,sum(vitB6*de.material_amount) As NvitB6,"
+'										sql=sql & "sum(vitB9*de.material_amount) As NvitB9,sum(vitB12*de.material_amount) As NvitB12,sum(sele*de.material_amount) As Nsele "
+'										
+'										sql=sql & "from menufood Me"
+'										sql=sql & "LEFT JOIN detailmenu de on Me.menufood_id = de.menufood_id"
+'										sql=sql & "LEFT JOIN material ma on de.material_id = ma.material_id"
+										
+
+		 								rs=dbSQL.ExecQuery(sql)	
+										rs.Position =0	
+										
+'			btnaddeat.Visible=False		'ซ่อนปุ่มในหน้า eat
+'			btndieteat.Visible=False	'ซ่อนปุ่มในหน้า eat
+			
+	Catch
+	Msgbox(LastException,"x")
+	End Try
+End Sub
+
+Sub lvshowre_ItemClick (Position As Int, Value As Object)
+
+'	Msgbox(Position,"p")'0
+'	Msgbox(Value,"v")'50ไอดีมื้อ
+		eatid = Value
+		btnaddeat.Visible=True
+		btnaddeat.Enabled=True
+'	If btnaddeat.Visible=True Then
+''		btnaddeat.Visible=False		'ซ่อนปุ่มในหน้า eat
+''		btnaddeat.Enabled=False		'ซ่อนปุ่มในหน้า eat
+''		btndieteat.Visible=False	'ซ่อนปุ่มในหน้า eat
+'		nameeat
+'		
+'	'	Msgbox("เลือกมื้อ"&Value&" "&Position&"","แจ้งเตือน")
+'
+'	Else If btnaddeat.Visible=False Then
+''		btnaddeat.Visible=True
+''		btnaddeat.Enabled=True
+''		btndieteat.Visible=True
+		nameeat	  
+'	Else
+'			Return
+'	End If
+
+End Sub
+
+'lvfoodinday.Clear
+'			  Dim rs As Cursor
+'			  Dim sql As String
+'			  sql="select takefood.repastname_id,takefood.takefood_count,menufood.menufood_id,menufood.menufood_name from takefood "
+'			  sql=sql & " inner join menufood on takefood.menufood_id = menufood.menufood_id "
+'			  sql=sql & " where takefood.repastname_id='" & eatid & "'"
+'			  rs=dbSQL.ExecQuery(sql)
+'			  For i = 0 To rs.RowCount -1
+'			     rs.Position =i
+'				 lvfoodinday.AddSingleLine2(rs.GetString("menufood_name"),rs.GetString("repastname_id"))
+'			  Next
+Sub lvfoodinday_ItemClick (Position As Int, Value As Object)
+'		Msgbox(Position,"x")
+'		Msgbox(Value,"x")
+''		foodinday= Value
+'			Dim i As Int
+'			i = Msgbox2("ยืนยันการแก้ไขข้อมูล", "แจ้งเตือน", "ลบ", "", "ยกเลิก", Null)
+'				If i =-1 Then 'ลบ
+'					  Dim rs As Cursor
+'					  Dim sql As String
+'					  sql="delete from takefood where repastname_id='" & Value & "'and menufood_id ='" & Position & "'"  
+''					  sql=sql & " inner join menufood on takefood.menufood_id = menufood.menufood_id "
+'					  rs = dbSQL.ExecQuery(sql)
+'					 Return
+'				Else 'ยกเลิก
+'					Return
+'				End If
+End Sub
+
+Sub btnaddeat_Click
+	Try
+		If	pneat.Visible=True Then
+				pneat.Visible=False
+			  	btnconeat.Visible=False
+			 	btnconeat.Enabled=False
+					lbleatintro.Visible=True
+					lbleatintro.Enabled=True
+'					btndieteat.Visible=True
+'					btndieteat.Enabled=True
+					btnaddeat.Visible=True
+					btnaddeat.Enabled=True
+		
+		Else If pneat.Visible=False Then
+			pneat.Visible=True
+			pneat.Top=btnconeat.Height+btnconeat.top
+			pneat.Width=100%x
+			pneat.Height=100%y-btnconeat.Height
+			  showmenuselect
+			  Log("Loading...")
+			  btnconeat.Visible=True
+			  btnconeat.Enabled=True
+'			  	btndieteat.Visible=False
+'				btndieteat.Enabled=False
+				btnaddeat.Visible=False
+				btnaddeat.Enabled=False
+				
+			  lbleatintro.Visible=False
+			  lbleatintro.Enabled=False
+		End If
+	Catch
+	Msgbox(LastException,"x")
+	End Try	
+End Sub
+Sub showmenuselect											''''''''''''ทำตรงนี้*หลังเพิ่มสารอาหาร**************
+ 		  Table1.Initialize(Me, "Table_eat", 4)   
+		  Table1.AddToActivity(pneat,0,0,100%y,100%x-btnconeat.Height)
+		  Table1.SetHeader(Array As String("id","ชื่อเมนู","เลือก","จำนวน"))	
+		  Table1.SetColumnsWidths(Array As Int(0,65%x,20%x,15%x)) 	
+				  Dim rs As Cursor
+				  Dim sql As String 
+				  sql="select menufood_id,menufood_name from menufood"
+				  rs=dbSQL.ExecQuery(sql)		
+				  For i = 0 To rs.RowCount -1
+				     rs.Position =i
+					   Table1.AddRow(Array As String(rs.GetInt("menufood_id") , rs.GetString("menufood_name"),("..."),("1"))) 'เรียกฐานข้อมูลมาแสดงในตาราง   ', "","","","","..."
+				  Next 
+				  TotalRows=i
+End Sub
+
+Sub Table_eat_CellClick (Col As Int, Row As Int) 
+	If Col =2 Then
+	   If Table1.GetValue(2,Row)="..." Then
+	   		Table1.SetValue(2,Row,"X")
+												'0000000000000000000000000000
+									    Dim Id As InputDialog
+										Dim ret As Int
+											Id.Input = Table1.GetValue(3,Row)
+											Id.Hint = ""
+											Id.InputType =Id.INPUT_TYPE_DECIMAL_NUMBERS 
+											Id.HintColor = Colors.ARGB(196, 255, 140, 0)
+											ret = DialogResponse.CANCEL
+											ret = Id.Show("จำนวนจาน","แจ้งเตือน", "ยกเลิก", "", "ตกลง", Null)
+											If ret=-3 Then 
+											    Return
+											Else
+										       Table1.SetValue(3,Row,Id.Input)
+											End If 
+										'=====================================================
+	   Else
+	   		Table1.SetValue(2,Row,"...")
+	   End If 
+	   
+	End If 
+End Sub
+
+Sub btndieteat_Click
+		Activity.RemoveAllViews
+		
+		Activity.LoadLayout("eatinrepast")
+		
+		  Table1.Initialize(Me, "Table_eatinre", 4)   
+		  Table1.AddToActivity(Activity,0 ,lbldietintro1.Top + lbldietintro1.Height,100%x,80%y)
+		  Table1.SetHeader(Array As String("โภชนาการ","ได้รับ(หน่วย)","มาตรฐาน","ผลลัพธ์"))	
+		  Table1.SetColumnsWidths(Array As Int(23%x,23%x,24%x,30%x)) 
+		   		  Dim rs As Cursor
+				  Dim sql As String 
+			 		sql= "SELECT sum(material.kcal * detailmenu.material_amount * takefood.takefood_count) As kcal,"
+					sql=sql & " sum(material.prot * detailmenu.material_amount * takefood.takefood_count) As prot,"
+			 		sql=sql & " sum(material.crab * detailmenu.material_amount * takefood.takefood_count) As crab,"	
+					sql=sql & " sum(material.fiber * detailmenu.material_amount * takefood.takefood_count) As fiber,"
+					sql=sql & " sum(material.fat * detailmenu.material_amount * takefood.takefood_count) As fat,"
+					sql=sql & " sum(material.iron * detailmenu.material_amount * takefood.takefood_count) As iron,"
+					sql=sql & " sum(material.chol * detailmenu.material_amount * takefood.takefood_count) As chol,"
+					sql=sql & " sum(material.calc * detailmenu.material_amount * takefood.takefood_count) As calc,"
+					sql=sql & " sum(material.magn * detailmenu.material_amount * takefood.takefood_count) As magn,"
+					sql=sql & " sum(material.pota * detailmenu.material_amount * takefood.takefood_count) As pota,"
+					sql=sql & " sum(material.sodi * detailmenu.material_amount * takefood.takefood_count) As sodi,"
+					sql=sql & " sum(material.zinc * detailmenu.material_amount * takefood.takefood_count) As zinc,"
+					sql=sql & " sum(material.vitA * detailmenu.material_amount * takefood.takefood_count) As vitA,"
+					sql=sql & " sum(material.vitB1 * detailmenu.material_amount * takefood.takefood_count) As vitB1,"
+					sql=sql & " sum(material.vitE * detailmenu.material_amount * takefood.takefood_count) As vitE,"
+					sql=sql & " sum(material.vitB2 * detailmenu.material_amount * takefood.takefood_count) As vitB2,"
+					sql=sql & " sum(material.vitB3 * detailmenu.material_amount * takefood.takefood_count) As vitB3,"
+					sql=sql & " sum(material.vitB6 * detailmenu.material_amount * takefood.takefood_count) As vitB6,"
+'					sql=sql & " sum(material.vitB9 * detailmenu.material_amount * takefood.takefood_count) As vitB9,"
+					sql=sql & " sum(material.vitC * detailmenu.material_amount * takefood.takefood_count) As vitC,"
+					sql=sql & " sum(material.vitB12 * detailmenu.material_amount * takefood.takefood_count) As vitB12,"
+					sql=sql & " sum(material.sele * detailmenu.material_amount * takefood.takefood_count) As sele"
+					sql=sql & " FROM menufood INNER JOIN detailmenu on detailmenu.menufood_id=menufood.menufood_id"
+ 					sql=sql & " INNER JOIN material on material.material_id = detailmenu.material_id"
+					sql=sql & " INNER JOIN takefood on takefood.menufood_id = detailmenu.menufood_id "
+					sql=sql & " INNER JOIN repastname on repastname.repastname_id = takefood.repastname_id"			
+					sql=sql & " WHERE repast_date = '" & idrepast & "' AND user_id = '" & idname & "' and repastname.repastname_id ='" & eatid & "' "
+						 			
+				Dim x1 As Double 
+				Dim x2 As Double
+				  rs=dbSQL.ExecQuery(sql)		
+				  For i = 0 To rs.ColumnCount -1
+				     rs.Position =0
+					 x1= getdri("thdri_" & rs.GetColumnName(i))
+					 x2= rs.GetString2(i) - x1
+					 
+					   Table1.AddRow(Array As String(rs.GetColumnName(i) ,rs.GetString2(i),NumberFormat2(x1 ,1,2,2,True),NumberFormat2(x2,1,2,2,True))) 'เรียกฐานข้อมูลมาแสดงในตาราง   
+					  Next 
+					  TotalRows=i
+					
+'				  rs=dbSQL.ExecQuery(sql)		
+'				  For i = 0 To rs.RowCount -1
+'				     rs.Position =i
+'					   Table1.AddRow(Array As String(rs.GetInt("menufood_id") , rs.GetString("menufood_name"),("..."),("1"))) 'เรียกฐานข้อมูลมาแสดงในตาราง   ', "","","","","..."
+'				  Next 
+'				  TotalRows=i
+		
+		
+'		lblnu1.Visible=False
+'		lblnu1.Enabled=False
+'		spselectday.Visible=False
+'		spselectday.Enabled=False
+'			lblnu2.Visible=False
+'			lblnu2.Enabled=False
+'			spselectday2.Visible=False
+'			spselectday2.Enabled=False
+'				lblnu3.Visible=True
+'				lblnu3.Enabled=True
+'				spselectday3.Visible=True
+'				spselectday3.Enabled=True
+'					If eatid <0 Then
+'						lvshowre.Visible=True
+'						lvshowre.Enabled=True
+'					Else
+'						Return
+'					End If
+'				If spselectday.Visible=False Or spselectday2.Visible=False Then
+'		
+'		
+'				End If
+		
+		
+End Sub
+
+'Sub getProt(idFood As Double)					'โปรตีน
+
+Sub getdriinre(dri As Double)
+'	 Sub getdri(dri As String)
+
+	 	Dim ss As String 
+		Dim rs As Cursor
+		ss="select  " & dri &" from dri where sex_DRI='" & sexcal & "' And age_start <= '" & agecal & "' and age_end >= '" & agecal & "'"
+
+		rs=dbSQL.ExecQuery(ss)
+		If rs.RowCount >0 Then 
+			rs.Position=0
+			 Return  rs.GetString2(0) 
+			  
+		End If 
+End Sub
+  
+Sub spselectday3_ItemClick (Position As Int, Value As Object)
+		
+	
+'		  Dim rs As Cursor
+'		  Dim sql As String 
+'		  sql="select repast_date from repastname where user_id='"& idname &"' group by repast_date order by repast_date "
+'		  rs=dbSQL.ExecQuery(sql)
+'		  	For i = 0 To rs.RowCount -1	
+'		     rs.Position =i
+'			 
+'			        Dim sp() As String
+'						sp=Regex.Split("\-",rs.GetString("repast_date"))
+'			 			spselectday.Add((sp(2) & "/" & sp(1) & "/" & sp(0)))
+'				
+'			Next 
+End Sub
+
+Sub btnconeat_Click
+	btnconeat.Visible=False
+'	ProgressDialogShow("กรุณารอสักครู่...")
+'		DoEvents : DoEvents  
+	Dim i As Int
+		For i = 0 To TotalRows-1 
+		   If Table1.GetValue(2,i)="X" Then  'start copy
+'		   				  Dim rs As Cursor		'ค้นหา เมนูในมื้อซ้ำ ว่ามีหรือไม่ในฐานข้อมูล
+'						  Dim sql As String 
+'						  sql="select repastname_id,menufood_id,takefood_count,takefood_status from takefood where menufood_id ='" & Table1.GetValue(0,i) & "'"
+'						  rs=dbSQL.ExecQuery(sql)
+'						  	If rs.RowCount>0 Then
+'											  Dim rs As Cursor		'ค้นหา ชื่อซ้ำ ว่ามีหรือไม่ในฐานข้อมูล
+					'						  Dim sql As String 
+					'						  sql="select namesuser from recorduser where namesuser='" & txtname.text & "'"
+					'						  rs=dbSQL.ExecQuery(sql)
+					'						  	If rs.RowCount>0 Then
+					'								Msgbox("มีรายชื่อนี้แล้วในระบบ","แจ้งเตือน")
+					'								Return
+'							Else
+								Dim sqlfood As String
+								sqlfood="insert into takefood("
+								sqlfood=sqlfood & " repastname_id,"
+								sqlfood=sqlfood & " menufood_id,"
+								sqlfood=sqlfood & " takefood_count,"
+								sqlfood=sqlfood & " takefood_status"
+								sqlfood=sqlfood & " )values("
+								sqlfood=sqlfood & "'"& eatid &"'," 
+								sqlfood=sqlfood & "'"& Table1.GetValue(0,i) &"',"
+								sqlfood=sqlfood & "'"& Table1.GetValue(3,i) &"',"
+								sqlfood=sqlfood & "'1'"
+								sqlfood=sqlfood & " )"
+								dbSQL.ExecNonQuery(sqlfood)	 
+									
+'							End If
+			
+		   End If 
+		Next 		 
+		Msgbox("เพิ่มเมนูอาหารในมื้อสำเร็จ","แจ้งเตือน")
+	 pneat.Visible=False
+     nameeat
+'	ProgressDialogHide
+End Sub
+
+Sub nameeat
+          	lvfoodinday.Clear
+			  Dim rs As Cursor
+			  Dim sql As String
+			  sql="select takefood.repastname_id,takefood.takefood_count,menufood.menufood_id,menufood.menufood_name from takefood "
+			  sql=sql & " inner join menufood on takefood.menufood_id = menufood.menufood_id "
+			  sql=sql & " where takefood.repastname_id='" & eatid & "'"
+			  rs=dbSQL.ExecQuery(sql)
+			  For i = 0 To rs.RowCount -1
+			     rs.Position =i
+				 lvfoodinday.AddSingleLine2(rs.GetString("menufood_name"),rs.GetString("repastname_id"))
+			  Next
+End Sub
+
+'--------------------------------------------------------------------------------------หน้ารายการอาหารของแต่ละวันend
+'--------------------------------------------------------------------------------------หน้าเทียบสารอาหาร
+Sub btndiet_Click
+	Activity.RemoveAllViews
+	Activity.LoadLayout("nutrient")
+	Activity.SetBackgroundImage (LoadBitmap(File.DirAssets, "new-im2-1.jpg")) 
+	
+	
+		spselectday.Add("")
+	
+		  Dim rs As Cursor
+		  Dim sql As String 
+		  sql="select repast_date from repastname where user_id='"& idname &"' group by repast_date order by repast_date "
+		  rs=dbSQL.ExecQuery(sql)
+		  	For i = 0 To rs.RowCount -1
+		     rs.Position =i
+			 
+			        Dim sp() As String
+						sp=Regex.Split("\-",rs.GetString("repast_date"))
+			 			spselectday.Add((sp(2) & "/" & sp(1) & "/" & sp(0)))
+				
+			Next 
+			
+			
+			spselectday2.Add("")
+			  Dim rs As Cursor
+  			  Dim sql As String 
+			  sql="select repast_date from repastname where user_id='"& idname &"' group by repast_date order by repast_date "
+			  rs=dbSQL.ExecQuery(sql)
+			  	For i = 0 To rs.RowCount -1
+			     rs.Position =i
+				 
+				        Dim sp() As String
+							sp=Regex.Split("\-",rs.GetString("repast_date"))
+							spselectday2.Add((sp(2) & "/" & sp(1) & "/" & sp(0)))
+			Next 
+		
+End Sub
+
+Sub btnblackhome1_Click
+	Activity.RemoveAllViews
+	Activity.LoadLayout("home") 
+'	Activity.SetBackgroundImage (LoadBitmap(File.DirAssets, "bg.png")) 
+	Activity.SetBackgroundImage (Null) 
+End Sub 
+
+
+
+Sub lblselectday_Click			' เปลี่ยน1เป็น2
+'	Dim set As Int 
+'	Dim Dd As DateDialog													'เลือกวันหน้าจัดการมื้อ
+'	Dd.Year = DateTime.GetYear(DateTime.Now)
+'	Dd.Month = DateTime.GetMonth(DateTime.Now)	
+'	Dd.DayOfMonth = DateTime.GetDayOfMonth(DateTime.Now)
+'	set = Dd.Show("แตะเพื่อเลือกวันที่", "คำนวณค่าโภชนาการ", "Yes", "No", "", Null)
+'	lblselectday.text = Dd.DayOfMonth & "/" & Dd.Month & "/" & Dd.Year 
+'	Dim a As String 
+'	Dim b As String 
+'	a=Dd.Month 
+'	b=Dd.DayOfMonth
+'	If a.Length =1 Then a="0" & a
+'	If b.Length=1 Then b="0" & b
+'	lblselectday.tag =  Dd.Year & "-" & a & "-" & b	' เปลี่ยน1เป็น2	
+End Sub
+
+Sub lblselectday1_Click			' เปลี่ยน1เป็น2
+'	Dim set As Int 
+'	Dim Dd As DateDialog													'เลือกวันหน้าจัดการมื้อ
+'	Dd.Year = DateTime.GetYear(DateTime.Now)
+'	Dd.Month = DateTime.GetMonth(DateTime.Now)	
+'	Dd.DayOfMonth = DateTime.GetDayOfMonth(DateTime.Now)
+'	set = Dd.Show("แตะเพื่อเลือกวันที่", "คำนวณค่าโภชนาการ", "Yes", "No", "", Null)
+'	lblselectday1.text = Dd.DayOfMonth & "/" & Dd.Month & "/" & Dd.Year 
+'	Dim a As String 
+'	Dim b As String 
+'	a=Dd.Month 
+'	b=Dd.DayOfMonth
+'	If a.Length =1 Then a="0" & a
+'	If b.Length=1 Then b="0" & b
+'	lblselectday1.tag =  Dd.Year & "-" & a & "-" & b	' เปลี่ยน1เป็น2
+End Sub
+
+Sub btncondate_Click
+
+	shownutri
+End Sub
+
+'--------------------------------------------------------------------------------------หน้าเทียบสารอาหารend
+Sub	shownutri
+								
+
+'			  Dim rs As Cursor		'ค้นหา ชื่อซ้ำ ว่ามีหรือไม่ในฐานข้อมูล
+'			  Dim sql As String 
+'			  sql="select menufood_id from FoodNutrient "
+'			  rs=dbSQL.ExecQuery(sql)
+'			  	If rs.RowCount>0 Then
+'					
+'					
+'					
+'					
+'					Return
+'				Else If rs.RowCount<0 Then
+'								  Dim rs As Cursor		'ค้นหา ชื่อซ้ำ ว่ามีหรือไม่ในฐานข้อมูล
+'								  Dim sql As String 
+'								  sql="DROP VIEW FoodNutrient"
+'								  rs=dbSQL.ExecQuery(sql)
+'								  Return
+'				End If
+
+ 
+		  
+		  
+		  Table1.Initialize(Me, "Table_nutri", 4)   
+		  Table1.AddToActivity(Activity,0 ,lblnu2.Top + btncondate.Height,100%x,80%y - btncondate.Height)
+		  Table1.SetHeader(Array As String("โภชนาการ","ได้รับ","มาตรฐาน","ผลลัพธ์"))	
+		  Table1.SetColumnsWidths(Array As Int(23%x,23%x,24%x,30%x)) 	
+				  Dim rs As Cursor
+				  Dim sql As String 
+			 		sql= "SELECT "
+					sql=sql & " sum(material.kcal * detailmenu.material_amount * takefood.takefood_count) As kcal,"
+					sql=sql & " sum(material.prot * detailmenu.material_amount * takefood.takefood_count) As prot,"
+			 		sql=sql & " sum(material.crab * detailmenu.material_amount * takefood.takefood_count) As crab,"	
+					sql=sql & " sum(material.fiber * detailmenu.material_amount * takefood.takefood_count) As fiber,"
+					sql=sql & " sum(material.fat * detailmenu.material_amount * takefood.takefood_count) As fat,"
+					sql=sql & " sum(material.iron * detailmenu.material_amount * takefood.takefood_count) As iron,"
+					sql=sql & " sum(material.chol * detailmenu.material_amount * takefood.takefood_count) As chol,"
+					sql=sql & " sum(material.calc * detailmenu.material_amount * takefood.takefood_count) As calc,"
+					sql=sql & " sum(material.magn * detailmenu.material_amount * takefood.takefood_count) As magn,"
+					sql=sql & " sum(material.pota * detailmenu.material_amount * takefood.takefood_count) As pota,"
+					sql=sql & " sum(material.sodi * detailmenu.material_amount * takefood.takefood_count) As sodi,"
+					sql=sql & " sum(material.zinc * detailmenu.material_amount * takefood.takefood_count) As zinc,"
+					sql=sql & " sum(material.vitA * detailmenu.material_amount * takefood.takefood_count) As vitA,"
+					sql=sql & " sum(material.vitB1 * detailmenu.material_amount * takefood.takefood_count) As vitB1,"
+					sql=sql & " sum(material.vitE * detailmenu.material_amount * takefood.takefood_count) As vitE,"
+					sql=sql & " sum(material.vitB2 * detailmenu.material_amount * takefood.takefood_count) As vitB2,"
+					sql=sql & " sum(material.vitB3 * detailmenu.material_amount * takefood.takefood_count) As vitB3,"
+					sql=sql & " sum(material.vitB6 * detailmenu.material_amount * takefood.takefood_count) As vitB6,"
+'					sql=sql & " sum(material.vitB9 * detailmenu.material_amount * takefood.takefood_count) As vitB9,"
+					sql=sql & " sum(material.vitC * detailmenu.material_amount * takefood.takefood_count) As vitC,"
+					sql=sql & " sum(material.vitB12 * detailmenu.material_amount * takefood.takefood_count) As vitB12,"
+					sql=sql & " sum(material.sele * detailmenu.material_amount * takefood.takefood_count) As sele,"
+					
+					sql=sql & " julianday('" & lblselectday1.tag &"') - julianday('" & lblselectday.tag & "') +1 as days "
+					
+					sql=sql & " FROM menufood INNER JOIN detailmenu on detailmenu.menufood_id=menufood.menufood_id"
+ 					sql=sql & " INNER JOIN material on material.material_id = detailmenu.material_id"
+					sql=sql & " INNER JOIN takefood on takefood.menufood_id = detailmenu.menufood_id INNER JOIN repastname on repastname.repastname_id = takefood.repastname_id"			
+					sql=sql & " WHERE repast_date between '" & lblselectday.tag & "' and '" & lblselectday1.tag & "' AND user_id = '" & idname & "'"	
+
+								If lblselectday.tag = "" Or lblselectday1.tag= "" Then
+									Msgbox("แจ้งเตือน","กรุณาเลือกวันที่")
+									Return
+								Else
+								End If
+				Dim x1 As Double 
+				Dim x2 As Double
+				Dim days As Int 
+				  rs=dbSQL.ExecQuery(sql)		
+				  For i = 0 To rs.ColumnCount -2
+				     rs.Position =0
+					  days= rs.GetString("days")
+					  
+					 x1 = getdri("thdri_" & rs.GetColumnName(i)) * days 
+					 x2 = rs.GetString2(i) -  x1
+					
+					   Table1.AddRow(Array As String(rs.GetColumnName(i) ,rs.GetString2(i),NumberFormat2(x1 ,1,2,2,True),NumberFormat2(x2,1,2,2,True))) 'เรียกฐานข้อมูลมาแสดงในตาราง   
+				  Next 
+				  TotalRows=i
+End Sub
+
+Sub getdri(dri As String) As String
+
+	 	Dim ss As String 
+		Dim rs As Cursor
+		ss="select  " & dri &" from dri where sex_DRI='" & sexcal & "' And age_start <= '" & agecal & "' and age_end >= '" & agecal & "'"
+		rs=dbSQL.ExecQuery(ss)
+		If rs.RowCount >0 Then 
+			rs.Position=0
+			 Return  rs.GetString2(0) 		
+			 Else
+			 Return ""
+		End If 
+End Sub
+
+Sub btnbhometoeatre_Click
+		Activity.RemoveAllViews
+		Activity.LoadLayout("home")
+End Sub
+'******************************************************************************************************
+	
+'******************************************************************************************************
+Sub Table_nutri_CellClick (Col As Int, Row As Int) 
+	If Col =2 Then
+	   If Table1.GetValue(2,Row)="..." Then
+	   		Table1.SetValue(2,Row,"X")
+	   Else
+	   		Table1.SetValue(2,Row,"...")
+	   End If 
+	End If 
+End Sub
+
+Sub spselectday_ItemClick (Position As Int, Value As Object)
+Try
+	Dim sp() As String
+	sp=Regex.Split("\/",Value)
+	
+	idnutri = sp(2) &"-"&sp(1)&"-"&sp(0)
+	lblselectday.tag = idnutri
+'	Msgbox(Value,Position)
+
+			
+	Catch
+	Msgbox(LastException,"x")
+	End Try
+End Sub
+
+Sub spselectday2_ItemClick (Position As Int, Value As Object)
+Try
+	Dim sp() As String
+	sp=Regex.Split("\/",Value)
+	
+	idnutri1 = sp(2) &"-"&sp(1)&"-"&sp(0)
+	lblselectday1.tag = idnutri1
+'	Msgbox(Value,Position)
+	Catch
+	Msgbox(LastException,"x")
+	End Try
+End Sub
+
